@@ -1,0 +1,14 @@
+<div class="dashboard">
+  <h2>Dashboard</h2>
+  <div>
+    <div class="boxes">
+      <app-planner-box
+        *ngFor="let box of boxes"
+        [title]="box.title"
+        [count]="box.count"
+        [icon]="box.icon"
+      >
+      </app-planner-box>
+    </div>
+  </div>
+</div>

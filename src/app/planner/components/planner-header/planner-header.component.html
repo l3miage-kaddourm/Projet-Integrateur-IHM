@@ -1,0 +1,27 @@
+<mat-toolbar>
+  <span class="name">Furniture</span>
+  <span class="spacer"></span>
+  <div class="header-image">
+    <img src="assets/images/lamp.png" alt="Logo" />
+  </div>
+
+  <div class="nav">
+    <button mat-button routerLink="/home">Dashboard</button>
+    <button mat-button routerLink="/products">Products</button>
+    <button mat-button routerLink="/orders">My Orders</button>
+    <button mat-button routerLink="/contact">Contact</button>
+  </div>
+  <span class="spacer"></span>
+  <div class="planner-info">
+    <span class="planner-image-icon">
+      <img
+        src="assets/images/young-man.png"
+        alt="Planner's Image"
+        width="25px"
+      />
+    </span>
+    <span class="planner-name">
+      {{ name }}
+    </span>
+  </div>
+</mat-toolbar>

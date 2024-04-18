@@ -1,0 +1,63 @@
+/* orders.component.css */
+.orders {
+	padding: 30px 50px;
+}
+
+.orders h2 {
+	color: var(--primary-color);
+}
+
+
+.table td,
+.table th {
+	padding-bottom: 10px;
+}
+
+.table {
+	width: 100%;
+	margin-bottom: 10px;
+	background-color: transparent;
+	border-collapse: separate;
+	border-spacing: 0px 8px;
+	border-radius: 40px;
+	
+}
+  
+th {
+	/* background-color: var(--secondary-color); */
+	color: var(--secondary-color);
+	padding: 10px 10px;
+	letter-spacing: 1.5px;
+	font-weight: 600;
+}
+
+td {
+	padding: 10px 0px;
+	text-align: center;
+}
+
+.table tr:not(:last-child) {
+	border-bottom: 2px solid transparent;
+	margin-bottom: 30px;
+}
+
+
+.btn-link {
+	background: none;
+	border: none;
+	padding: 0;
+	color: #007bff;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.even-row {
+	background-color: var(--primary-color);
+	/* background-color: #fff; */
+	color: #fff;
+}
+
+.odd-row {
+	background-color: #fff;
+	color: var(--secondary-color);
+}
