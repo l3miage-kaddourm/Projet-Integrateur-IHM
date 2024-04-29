@@ -1,0 +1,52 @@
+/* *=*=*=*=*=*=*=*=*=*=* Start Footer *=*=*=*=*=*=*=*=* */
+.footer {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	position: relative;
+	z-index: 0;
+	text-align: center;
+	background-color: var(--primary-color);
+}
+
+
+.footer .container p:first-of-type {
+	/* text-transform: uppercase; */
+	padding: 0;
+	border-bottom: 1px solid white;
+	font-size: 30px;
+	width: fit-content;
+	margin: 20px auto;
+	color: white;
+}
+.footer .container p::first-letter {
+	font-size: 40px;
+	color: orange;
+}
+
+.footer .social-icons {
+	margin: 40px 0 20px;
+	color: white;
+}
+
+.footer .social-icons mat-icon {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.footer .container>p:last-of-type {
+	color: white;
+	/* margin-top: 40px; */
+	font-size: 20px;
+}
+
+
+.footer .container>p:last-of-type span {
+	color: orange;
+	font-weight: bolder;
+	letter-spacing: 1.2px
+}
+
+#copt {
+	font-size: 12px;
+}
+/* *=*=*=*=*=*=*=*=*=*=* End Footer *=*=*=*=*=*=*=*=* */

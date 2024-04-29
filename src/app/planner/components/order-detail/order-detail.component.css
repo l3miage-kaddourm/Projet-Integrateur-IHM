@@ -1,0 +1,38 @@
+/* .sub-table thead tr {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+} */
+
+.sub-table {
+	padding: 0px 10px;
+
+}
+
+
+
+.sub-table td,
+.sub-table th {
+	padding-bottom: 10px;
+	background-color: var(--secondary-color);
+}
+
+.sub-table {
+	width: calc(100% - 60px);
+	margin: 0 30px;
+	border-collapse: separate;
+	border-spacing: 5px 5px;
+}
+
+th {
+	color: white;
+	padding: 10px 10px;
+	letter-spacing: 1.5px;
+	font-weight: 500;
+}
+
+td {
+	color: white;
+	padding: 10px 0;
+	text-align: center;
+}

@@ -15,30 +15,36 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { PlannerDashboardComponent } from './planner/components/planner-dashboard/planner-dashboard.component';
 import { PlannerBoxComponent } from './planner/components/planner-box/planner-box.component';
 import { OrdersComponent } from './planner/components/orders/orders.component';
+import { DeliveryPersonComponent } from './planner/components/delivery-person/delivery-person.component';
+import { OrderDetailComponent } from './planner/components/order-detail/order-detail.component';
+import { ToursComponent } from './planner/components/tours/tours.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PlannerHeaderComponent,
-    PlannerFooterComponent,
-    PlannerLayoutComponent,
-    PlannerDashboardComponent,
-    PlannerBoxComponent,
-    OrdersComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatMenuModule
-  ],
-  providers: [
-    provideClientHydration(),
-    provideAnimationsAsync()
-  ],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		PlannerHeaderComponent,
+		PlannerFooterComponent,
+		PlannerLayoutComponent,
+		PlannerDashboardComponent,
+		PlannerBoxComponent,
+		OrdersComponent,
+		DeliveryPersonComponent,
+		OrderDetailComponent,
+		ToursComponent,
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		MatToolbarModule,
+		MatIconModule,
+		MatButtonModule,
+		MatMenuModule,
+	],
+	providers: [
+		provideClientHydration(),
+		provideAnimationsAsync()
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

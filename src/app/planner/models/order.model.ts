@@ -6,4 +6,11 @@ export interface Order {
 	address: string;
 	city: string;
 	postalCode: string;
+	details: OrderDetail[];
 }
+
+export interface OrderDetail {
+	itemId: string;
+	description: string;
+	quantity: number;
+  }

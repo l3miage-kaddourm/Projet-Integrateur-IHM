@@ -2,16 +2,21 @@
 	flex: 0.5 0 auto;
 }
 
+.name {
+	font-size: 25px;
+	letter-spacing: 1.5px;
+}
+
 .name::first-letter {
 	color: #fa722c;
 	font-weight: bolder;
-	font: 44px;
+	font-size: 40px;
 }
 
 mat-toolbar {
 	background-color: #74a1b6;
 	color: white;
-	padding: 0 50px;
+	padding: 50px 50px;
 }
 
 mat-toolbar button {
@@ -31,9 +36,20 @@ mat-toolbar button {
 }
 
 .nav {
-	width: 370px;
+	width: 550px;
 	display: flex;
 	justify-content: space-between;
+}
+
+.nav button {
+	padding: 0 20px;
+	transition: 0.2s;
+}
+
+.nav button:hover {
+	/* color: var(--secondary-color); */
+	border-radius: 40px;
+	scale: 1.1;
 }
 
 mat-toolbar {
@@ -46,7 +62,6 @@ mat-toolbar {
 	display: flex;
 	justify-content: center;
 	overflow: visible;
-
 }
 
 .header-image img {
@@ -79,9 +94,13 @@ mat-toolbar {
 	width: 160px;
 }
 
-
-
 .planner-info .planner-name {
 	font-size: 16px;
 	font-weight: 400;
+}
+
+.active-link {
+	background-color: var(--secondary-color);
+	border-radius: 40px;
+	scale: 1.1;
 }

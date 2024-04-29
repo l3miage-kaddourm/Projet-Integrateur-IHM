@@ -1,11 +1,97 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+	height: 100%;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+	margin: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 :root {
 	--primary-color: #74a1b6;
-	--secondary-color: #fa722c;;
+	--secondary-color: #fa722c;
 	--background-color: #f0f0f0;
 	--text-color: #f0f0f0;
+}
+
+.container {
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+.even-row {
+	background-color: var(--primary-color);
+	color: #fff;
+}
+
+.odd-row {
+	background-color: #eeff;
+	color: var(--secondary-color);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	border: 2px solid var(--secondary-color);
+}
+
+.table {
+	width: 100%;
+	margin-bottom: 10px;
+	background-color: transparent;
+	border-collapse: separate;
+	border-spacing: 0px 10px;
+	border-radius: 40px;
+
+}
+
+.table td,
+.table th {
+	padding-bottom: 10px;
+}
+
+th {
+	color: var(--secondary-color);
+	padding: 10px 10px;
+	letter-spacing: 1.5px;
+	font-weight: 600;
+}
+
+td {
+	padding: 10px 0;
+	text-align: center;
+	cursor: pointer;
+}
+
+.table tr:not(:last-child) {
+	border-bottom: 2px solid transparent;
+	margin-bottom: 30px;
+}
+
+
+.btn-link {
+	background: none;
+	color: var(--secondary-color);
+	border: none;
+	padding: 0;
+	text-decoration: underline;
+	cursor: pointer;
+	font-size: 15px;
+}
+
+.orders {
+	padding: 30px 50px;
+}
+
+.orders h2 {
+	color: var(--primary-color);
 }

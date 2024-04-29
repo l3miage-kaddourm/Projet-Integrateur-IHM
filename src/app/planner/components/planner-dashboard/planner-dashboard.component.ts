@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BoxInfo } from '../../models/box-info.model';
-import { PlannerDataService } from '../../planner-data.service';
+import { PlannerDataService } from '../../../services/planner-data.service';
 
 @Component({
 	selector: 'app-planner-dashboard',
