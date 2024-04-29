@@ -15,15 +15,9 @@ export class PlannerDataService {
 
 	}
 	getData(): Observable<any> {
-		console.log("==============");
-		console.log(this.apiUrl);
 		return this.http.get(this.apiUrl);
 	}
 
-	// getBoxInfo(): Observable<BoxInfo[]> {
-	// 	console.log();
-	// 	return this.http.get<BoxInfo[]>(this.apiUrl);
-	// }
 
 	getBoxInfo(): Observable<BoxInfo[]> {
 		const localData: BoxInfo[] = [
