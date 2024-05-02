@@ -18,6 +18,7 @@ import { OrdersComponent } from './planner/components/orders/orders.component';
 import { DeliveryPersonComponent } from './planner/components/delivery-person/delivery-person.component';
 import { OrderDetailComponent } from './planner/components/order-detail/order-detail.component';
 import { ToursComponent } from './planner/components/tours/tours.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { ToursComponent } from './planner/components/tours/tours.component';
 		DeliveryPersonComponent,
 		OrderDetailComponent,
 		ToursComponent,
+
 	],
 	imports: [
 		BrowserModule,
@@ -40,6 +42,7 @@ import { ToursComponent } from './planner/components/tours/tours.component';
 		MatIconModule,
 		MatButtonModule,
 		MatMenuModule,
+		HttpClientModule
 	],
 	providers: [
 		provideClientHydration(),

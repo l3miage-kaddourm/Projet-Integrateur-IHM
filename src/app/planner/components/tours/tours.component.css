@@ -1,6 +1,6 @@
 .control-panel {
 	margin-left: auto;
-    margin-right: auto;
+	margin-right: auto;
 	width: 400px;
 }
 
@@ -8,4 +8,116 @@
 	margin: 0 10px;
 	padding: 20px;
 	border-radius: 20px;
+}
+
+.tour-info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	background-color: var(--primary-color);
+	margin: 60px 50px;
+	padding: 25px 50px;
+	border-radius: 7px;
+	cursor: pointer;
+}
+
+.test {
+	text-align: center;
+}
+
+.test ul {
+	display: flex;
+	align-items: center;
+}
+
+.add-icon {
+	cursor: pointer;
+	font-size: 18px;
+	padding-top: 7px;
+	color: white;
+}
+
+.test span {
+	margin: 0 5px;
+	background-color: white;
+	padding: 6px 10px;
+	display: flex;
+	align-items: center;
+	color: var(--secondary-color);
+	letter-spacing: 1.1px;
+}
+
+.test ul li {
+	margin: 0 5px;
+	background-color: white;
+	padding: 5px 12px 5px 5px;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	color: var(--secondary-color);
+}
+
+.test ul li::before {
+	content: 'close';
+	font-family: 'Material Icons';
+	display: inline-block;
+	font-feature-settings: 'liga';
+	font-size: 17px;
+	margin-right: 5px;
+}
+
+select {
+	border: none;
+	padding: 5px 8px;
+	background-color: white;
+	margin: 0 5px;
+	outline: none;
+	text-align: center;
+	width: 80px;
+	color: var(--secondary-color);
+}
+
+select option {
+	text-align: center;
+}
+
+select optgroup {
+	background: #fff;
+	/* color: #222020; */
+	border: none;
+	color: var(--secondary-color);
+}
+
+
+.icon-title {
+	justify-content: center;
+	text-align: center;
+}
+
+.icon-title img {
+	object-fit: contain;
+}
+
+h5 {
+	margin-top: 5px;
+	color: white;
+	letter-spacing: 1.3px;
+	font-weight: 500;
+}
+
+
+/* ================ */
+.tour-details {
+	display: flex;
+	justify-content: center;
+}
+
+.tour-details table {
+	background-color: #eeee;
+	width: 70%;
+}
+
+.tour-details td {
+	letter-spacing: 1.1px;
 }
