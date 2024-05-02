@@ -1,22 +1,10 @@
-.control-panel {
-	margin-left: auto;
-	margin-right: auto;
-	width: 400px;
-}
-
-.control-panel button {
-	margin: 0 10px;
-	padding: 20px;
-	border-radius: 20px;
-}
-
 .tour-info {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 
 	background-color: var(--primary-color);
-	margin: 60px 50px;
+	margin: 30px;
 	padding: 25px 50px;
 	border-radius: 7px;
 	cursor: pointer;
@@ -46,6 +34,7 @@
 	align-items: center;
 	color: var(--secondary-color);
 	letter-spacing: 1.1px;
+	border-radius: 5px;
 }
 
 .test ul li {
@@ -56,6 +45,7 @@
 	align-items: center;
 	cursor: pointer;
 	color: var(--secondary-color);
+	border-radius: 5px;
 }
 
 .test ul li::before {
@@ -69,13 +59,14 @@
 
 select {
 	border: none;
-	padding: 5px 8px;
+	padding: 8px 8px;
 	background-color: white;
 	margin: 0 5px;
 	outline: none;
 	text-align: center;
 	width: 80px;
 	color: var(--secondary-color);
+	border-radius: 5px;
 }
 
 select option {
@@ -85,6 +76,7 @@ select option {
 select optgroup {
 	background: #fff;
 	/* color: #222020; */
+	border-radius: 5px;
 	border: none;
 	color: var(--secondary-color);
 }
@@ -107,17 +99,66 @@ h5 {
 }
 
 
-/* ================ */
+/*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*/
+/*            Start  details for each tour         */
+/*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*/
 .tour-details {
 	display: flex;
 	justify-content: center;
 }
 
 .tour-details table {
-	background-color: #eeee;
-	width: 70%;
+	width: 80%;
 }
 
 .tour-details td {
 	letter-spacing: 1.1px;
+	background-color: #eeff;
+}
+
+.tour-details table {
+	/* display: none; */
+	border-radius: 10px;
+	padding: 10px 0;
+}
+
+
+.tour-details table tr {
+	padding: 5px;
+}
+
+.cdk-drag-preview {
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+	/* border: 1px solid #e10f0f; */
+	background-color: var(--primary-color);
+	color: white;
+	width: 50%;
+}
+
+.cdk-drag-placeholder {
+	opacity: 0;
+}
+
+tr.cdk-drag {
+	background-color: #f9f9f9;
+	cursor: move;
+}
+
+/*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*/
+/*              End details for each tour          */
+/*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*/
+
+
+
+
+.control-panel {
+	margin-left: auto;
+	margin-right: auto;
+	width: 400px;
+}
+
+.control-panel button {
+	margin: 0 10px;
+	padding: 20px;
+	border-radius: 20px;
 }

@@ -6,6 +6,12 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
-        "<!-- prettier-ignore -->": true
+        "<!-- prettier-ignore -->": true,
+        "[!s]*/**": true,
+        "s[!r]*/**": true,
+        "sr[!c]*/**": true,
+        "src/[!a]*/**": true,
+        "src/a[!p]*/**": true,
+        "src/ap[!p]*/**": true
     }
 }

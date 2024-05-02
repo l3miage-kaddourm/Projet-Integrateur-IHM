@@ -18,8 +18,8 @@ import { OrdersComponent } from './planner/components/orders/orders.component';
 import { DeliveryPersonComponent } from './planner/components/delivery-person/delivery-person.component';
 import { OrderDetailComponent } from './planner/components/order-detail/order-detail.component';
 import { ToursComponent } from './planner/components/tours/tours.component';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
 	declarations: [
@@ -32,9 +32,9 @@ import { HttpClientModule } from '@angular/common/http';
 		OrdersComponent,
 		DeliveryPersonComponent,
 		OrderDetailComponent,
-		ToursComponent,
-
+		ToursComponent
 	],
+
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
@@ -42,11 +42,14 @@ import { HttpClientModule } from '@angular/common/http';
 		MatIconModule,
 		MatButtonModule,
 		MatMenuModule,
-		HttpClientModule
+		HttpClientModule,
+		DragDropModule,
+
 	],
 	providers: [
 		provideClientHydration(),
-		provideAnimationsAsync()
+		provideAnimationsAsync(),
+		provideHttpClient(withFetch()),
 	],
 	bootstrap: [AppComponent]
 })
