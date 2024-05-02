@@ -18,7 +18,12 @@ import { OrdersComponent } from './planner/components/orders/orders.component';
 import { DeliveryPersonComponent } from './planner/components/delivery-person/delivery-person.component';
 import { OrderDetailComponent } from './planner/components/order-detail/order-detail.component';
 import { ToursComponent } from './planner/components/tours/tours.component';
+<<<<<<< HEAD
 import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+=======
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+>>>>>>> 3ecedda7b54b9f672426f132f560756ca201c8a8
 
 @NgModule({
 	declarations: [
@@ -32,9 +37,13 @@ import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 		DeliveryPersonComponent,
 		OrderDetailComponent,
 		ToursComponent
+<<<<<<< HEAD
 		
 		
+=======
+>>>>>>> 3ecedda7b54b9f672426f132f560756ca201c8a8
 	],
+
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
@@ -43,12 +52,21 @@ import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 		MatButtonModule,
 		MatMenuModule,
 		HttpClientModule,
+<<<<<<< HEAD
 		
+=======
+		DragDropModule,
+
+>>>>>>> 3ecedda7b54b9f672426f132f560756ca201c8a8
 	],
 	providers: [
 		provideClientHydration(),
 		provideAnimationsAsync(),
+<<<<<<< HEAD
 	
+=======
+		provideHttpClient(withFetch()),
+>>>>>>> 3ecedda7b54b9f672426f132f560756ca201c8a8
 	],
 	bootstrap: [AppComponent]
 })

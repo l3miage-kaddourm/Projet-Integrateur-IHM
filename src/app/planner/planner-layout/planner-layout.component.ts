@@ -19,5 +19,6 @@ export class PlannerLayoutComponent {
 			},
 			error: (error) => console.error('There was an error!', error)
 		});
-	}
+	}  
+	  
 }

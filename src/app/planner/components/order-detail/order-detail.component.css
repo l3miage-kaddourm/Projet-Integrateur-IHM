@@ -1,15 +1,7 @@
-/* .sub-table thead tr {
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
-} */
-
 .sub-table {
 	padding: 0px 10px;
 
 }
-
-
 
 .sub-table td,
 .sub-table th {

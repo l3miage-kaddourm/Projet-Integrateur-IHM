@@ -55,6 +55,7 @@ mat-toolbar button {
 mat-toolbar {
 	position: relative;
 	align-items: center;
+	margin-bottom: 70px;
 }
 
 .header-image {
