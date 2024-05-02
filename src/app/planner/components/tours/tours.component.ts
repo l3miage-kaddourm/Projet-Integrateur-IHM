@@ -1,15 +1,13 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { PlannerDataService } from '../../../services/planner-data.service';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Order } from '../../models/order.model';
+import { PlannerDataService } from '../../../services/planner-data.service';
 
 @Component({
 	selector: 'app-tours',
 	templateUrl: './tours.component.html',
-	styleUrl: './tours.component.css'
+	styleUrls: ['./tours.component.css']
 })
 export class ToursComponent {
-
 	@Output() onToursChanged: EventEmitter<any> = new EventEmitter();
 
 	tours = [
@@ -41,7 +39,7 @@ export class ToursComponent {
 				duration: '1 Hours',
 				truckID: 'T002',
 				deliveries: [
-					{ id: 'DEL002', address: '12 Rue de Paris, 38100 Grenoble', status: 'Planifiée' }
+					{ id: 'DEL004', address: '12 Rue de Alfred, 38100 Grenoble', status: 'Planifiée' }
 				]
 			}
 		},
@@ -62,13 +60,16 @@ export class ToursComponent {
 	}
 
 	signalChange() {
+		// Emit the changes to the parent component
 		this.onToursChanged.emit(this.tours);
-	}
-	
-	handleToursChange(updatedTours) {
-		console.log('Tours updated:', updatedTours);
-		// Further actions based on updated tours
+		// Or call your service to update the backend
+		// this.updateBackend();
 	}
 
+	// updateBackend() {
+	//     this.dataService.updateTours(this.tours).subscribe({
+	//         next: (response) => console.log('Update successful', response),
+	//         error: (error) => console.error('Update failed', error)
+	//     });
+	// }
 }
-

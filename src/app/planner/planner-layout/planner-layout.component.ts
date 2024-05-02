@@ -19,6 +19,11 @@ export class PlannerLayoutComponent {
 			},
 			error: (error) => console.error('There was an error!', error)
 		});
-	}  
-	  
+	}
+
+	handleToursChange(updatedTours) {
+		console.log('Tours updated:', updatedTours);
+		// Implement additional actions based on the updated tours
+	}
+
 }
