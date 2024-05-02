@@ -18,8 +18,7 @@ import { OrdersComponent } from './planner/components/orders/orders.component';
 import { DeliveryPersonComponent } from './planner/components/delivery-person/delivery-person.component';
 import { OrderDetailComponent } from './planner/components/order-detail/order-detail.component';
 import { ToursComponent } from './planner/components/tours/tours.component';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 
 @NgModule({
 	declarations: [
@@ -32,8 +31,9 @@ import { HttpClientModule } from '@angular/common/http';
 		OrdersComponent,
 		DeliveryPersonComponent,
 		OrderDetailComponent,
-		ToursComponent,
-
+		ToursComponent
+		
+		
 	],
 	imports: [
 		BrowserModule,
@@ -42,11 +42,13 @@ import { HttpClientModule } from '@angular/common/http';
 		MatIconModule,
 		MatButtonModule,
 		MatMenuModule,
-		HttpClientModule
+		HttpClientModule,
+		
 	],
 	providers: [
 		provideClientHydration(),
-		provideAnimationsAsync()
+		provideAnimationsAsync(),
+	
 	],
 	bootstrap: [AppComponent]
 })
