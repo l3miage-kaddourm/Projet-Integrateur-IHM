@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlannerHeaderComponent } from './planner/components/planner-header/planner-header.component';
 import { PlannerFooterComponent } from './planner/components/planner-footer/planner-footer.component';
 import { PlannerLayoutComponent } from './planner/planner-layout/planner-layout.component';
-
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,30 +16,20 @@ import { OrdersComponent } from './planner/components/orders/orders.component';
 import { DeliveryPersonComponent } from './planner/components/delivery-person/delivery-person.component';
 import { OrderDetailComponent } from './planner/components/order-detail/order-detail.component';
 import { ToursComponent } from './planner/components/tours/tours.component';
-<<<<<<< HEAD
-import { HttpClientModule, provideHttpClient } from '@angular/common/http';
-=======
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
->>>>>>> 3ecedda7b54b9f672426f132f560756ca201c8a8
 
 @NgModule({
 	declarations: [
-		AppComponent,
-		PlannerHeaderComponent,
-		PlannerFooterComponent,
-		PlannerLayoutComponent,
-		PlannerDashboardComponent,
-		PlannerBoxComponent,
 		OrdersComponent,
 		DeliveryPersonComponent,
 		OrderDetailComponent,
-		ToursComponent
-<<<<<<< HEAD
-		
-		
-=======
->>>>>>> 3ecedda7b54b9f672426f132f560756ca201c8a8
+		ToursComponent,
+		PlannerBoxComponent,
+		PlannerDashboardComponent,
+		PlannerLayoutComponent,
+		PlannerHeaderComponent,
+		PlannerFooterComponent
 	],
 
 	imports: [
@@ -51,22 +39,16 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 		MatIconModule,
 		MatButtonModule,
 		MatMenuModule,
+		HttpClientModule
 		HttpClientModule,
-<<<<<<< HEAD
-		
-=======
 		DragDropModule,
 
->>>>>>> 3ecedda7b54b9f672426f132f560756ca201c8a8
 	],
 	providers: [
 		provideClientHydration(),
+		provideAnimationsAsync()
 		provideAnimationsAsync(),
-<<<<<<< HEAD
-	
-=======
 		provideHttpClient(withFetch()),
->>>>>>> 3ecedda7b54b9f672426f132f560756ca201c8a8
 	],
 	bootstrap: [AppComponent]
 })
