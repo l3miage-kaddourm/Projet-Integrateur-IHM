@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PlannerDataService } from '../../../services/planner-data.service';
 
+
 @Component({
 	selector: 'app-tours',
 	templateUrl: './tours.component.html',
-	styleUrl: './tours.component.css'
+	styleUrl: './tours.component.css',
 })
 export class ToursComponent implements OnInit {
 
