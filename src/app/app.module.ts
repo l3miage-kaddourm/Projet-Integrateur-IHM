@@ -21,6 +21,9 @@ import { ToursComponent } from './planner/components/tours/tours.component';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
+import { CommonModule } from "@angular/common";
+import { GeoApiGouvAddressModule } from "@placeme/ngx-geo-api-gouv-address";
+
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -44,6 +47,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 		MatMenuModule,
 		HttpClientModule,
 		DragDropModule,
+		CommonModule, 
+		GeoApiGouvAddressModule.forRoot(),
 
 	],
 	providers: [

@@ -21,9 +21,9 @@ export class PlannerLayoutComponent {
 		});
 	}
 
-	handleToursChange(updatedTours) {
-		console.log('Tours updated:', updatedTours);
-		// Implement additional actions based on the updated tours
-	}
+	// handleToursChange(updatedTours) {
+	// 	console.log('Tours updated:', updatedTours);
+	// 	// Implement additional actions based on the updated tours
+	// }
 
 }

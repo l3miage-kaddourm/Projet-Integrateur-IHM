@@ -1,41 +1,44 @@
-// import { HttpClient } from '@angular/common/http';
-// import { Injectable } from '@angular/core';
-// import { Feature, FeatureCollection, Point, Polygon, Position } from 'geojson';
-// import { LatLng } from 'leaflet';
-// import { firstValueFrom } from 'rxjs';
- 
-// const urlCommune = 'https://geo.api.gouv.fr/communes'
+import { Injectable } from '@angular/core';
+import { GeoApiGouvAddressService, GeoApiGouvAddressResponse } from '@placeme/ngx-geo-api-gouv-address';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-// @Injectable()
-// export class GeoapiService {
 
-//   constructor(private httpClient: HttpClient) { }
+@Injectable({
+	providedIn: 'root'
+})
+export class GeoapiService {
 
-//   async getCommune(postalCode: string): Promise<[Feature<Polygon, GeoPropertiesForCommune>, Feature<Point, GeoPropertiesForCommune>]> {
-//     const urlContour = `${urlCommune}?codePostal=${postalCode}&format=geojson&geometry=contour`
-//     const urlMairie  = `${urlCommune}?codePostal=${postalCode}&format=geojson&geometry=mairie`
+	constructor(private geoApiGouvAddressService: GeoApiGouvAddressService) { }
 
-//     const PC = firstValueFrom( this.httpClient.get<FeatureCollection<Polygon, GeoPropertiesForCommune>>( urlContour ) )
-//     const PM = firstValueFrom(this.httpClient.get<FeatureCollection<Point, GeoPropertiesForCommune>>(urlMairie))
-    
-//     return Promise.all([
-//       PC.then(fg => fg.features.length > 0 ? fg.features[0] : Promise.reject(`No commune found for postal code ${postalCode}`)),
-//       PM.then(fg => fg.features.length > 0 ? fg.features[0] : Promise.reject(`No commune found for postal code ${postalCode}`)),
-//     ]);
-//   }
-// }
+	getAddress(query: string): Observable<GeoApiGouvAddressResponse> {
+		return this.geoApiGouvAddressService.query({ q: query });
+	}
 
-// export function PositionToLatLng(p: Position): LatLng {
-//   return new LatLng(p[1], p[0])
-// }
+	getCoordinates(query: string): Observable<{ latitude: number, longitude: number }> {
+		return this.geoApiGouvAddressService.query({ q: query }).pipe(
+			map(response => {
+				const feature = response.features[0];
+				const coordinates = (feature.geometry as { type: 'Point', coordinates: [number, number] }).coordinates;
+				return {
+					latitude: coordinates[1],
+					longitude: coordinates[0]
+				};
+			})
+		);
+	}
 
-// export interface GeoPropertiesForCommune {
-//   readonly code: string;
-//   readonly codeDepartement: string;
-//   readonly codeEpci: string;
-//   readonly codeRegion: string;
-//   readonly codesPostaux: readonly string[];
-//   readonly nom: string;
-//   readonly population: number;
-//   readonly siren: string;
-// }
+	calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+		const toRadian = (angle: number) => (Math.PI / 180) * angle;
+		const radius = 6371;
+
+		const dLat = toRadian(lat2 - lat1);
+		const dLon = toRadian(lon2 - lon1);
+
+		const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+			Math.cos(toRadian(lat1)) * Math.cos(toRadian(lat2)) *
+			Math.sin(dLon / 2) * Math.sin(dLon / 2);
+		const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+		return radius * c;
+	}
+}
