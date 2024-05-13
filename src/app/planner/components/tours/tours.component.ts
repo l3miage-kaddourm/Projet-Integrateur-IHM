@@ -3,7 +3,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { PlannerDataService } from '../../../services/planner-data.service';
 import { GeoapiService } from '../../../services/geoapi.service';
 import { forkJoin } from 'rxjs/internal/observable/forkJoin';
-import { map, from } from 'rxjs';
+import { map, from, Observable } from 'rxjs';
 import { RoService } from '../../../services/ro.service';
 
 @Component({
@@ -12,9 +12,24 @@ import { RoService } from '../../../services/ro.service';
 	styleUrls: ['./tours.component.css']
 })
 export class ToursComponent {
+
 	@Output() onToursChanged: EventEmitter<any> = new EventEmitter();
 
 	depotAdresse: string = "11 avenue de kimberley 38130 échirolles"
+
+	serverResponse: any;
+	isOpen = false
+
+	allDeliveryPersonnel = ['Alice', 'Bob', 'Charlie', 'Dave'];
+	availableDeliveryPersonnel = [...this.allDeliveryPersonnel];
+
+	showPersonnelSelection: { [tourId: number]: boolean } = {};
+
+	constructor(
+		private dataService: PlannerDataService,
+		private geoApiService: GeoapiService,
+		private roService: RoService) { }
+
 
 	tours = [
 		{
@@ -26,11 +41,11 @@ export class ToursComponent {
 				startTime: '10h25',
 				endTime: '14h25',
 				duration: '4 Hours',
-				truckID: 'T001',
+				truckID: 'T001', deliveryPersonnel: ['Alice', 'Bob'],
 				deliveries: [
-					{ id: 'DEL001', address: '123 Avenue de la République, 75011 Paris', status: 'Planifiée' },
-					{ id: 'DEL002', address: '56 Rue de la Pompe, 75116 Paris', status: 'Planifiée' },
-					{ id: 'DEL003', address: '4 Place de la Concorde, 75008 Paris', status: 'Planifiée' }
+					{ id: 'DEL001', address: "150 Av. Gabriel Péri, 38400 Saint-Martin-d'Hères, France", status: 'Planifiée' },
+					{ id: 'DEL002', address: '75 Rue des Javaux, 38320 Eybens, France', status: 'Planifiée' },
+					{ id: 'DEL003', address: 'Grand Place, 38100 Grenoble, France', status: 'Planifiée' }
 				]
 			}
 		},
@@ -44,57 +59,150 @@ export class ToursComponent {
 				endTime: '12h25',
 				duration: '1 Hours',
 				truckID: 'T002',
+				deliveryPersonnel: ['Charlie'],
 				deliveries: [
-					{ id: 'DEL004', address: '88 Rue du Faubourg Saint-Antoine, 75012 Paris', status: 'Planifiée' }
+					{ id: 'DEL004', address: '55 Cr Jean Jaurès, 38130 Échirolles, France', status: 'Planifiée' }
 				]
 			}
 		},
 	];
 
-	constructor(private dataService: PlannerDataService, private geoApiService: GeoapiService, private roService: RoService) { }
-
-	getAdress() {
-		let addresses = [this.depotAdresse];
-
-		this.tours.forEach(tour => {
-			tour.info.deliveries.forEach(delivery => {
-				addresses.push(delivery.address);
-			});
-		});
-
-		return addresses;
+	ngOnInit() {
+		this.updateAvailableDeliveryPersonnel();
 	}
 
-	calculateDifferenceBetweenAddresses() {
-		const addresses = this.getAdress();
-		let requests = [];
+	/* ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*== */
+	/*      Start Handle CheckBox List of Delivery Personnel    */
+	/* ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*== */
 
-		for (let i = 0; i < addresses.length; i++) {
-			for (let j = 0; j < addresses.length; j++) {
-				let request = forkJoin({
-					coords1: this.geoApiService.getCoordinates(addresses[i]),
-					coords2: this.geoApiService.getCoordinates(addresses[j])
-				}).pipe(
-					map(({ coords1, coords2 }) => this.geoApiService.calculateDistance(
-						coords1.latitude, coords1.longitude,
-						coords2.latitude, coords2.longitude
-					))
-				);
-				requests.push(request);
-			}
+	/**
+	 * Update the list of available delivery personnel.
+	 */
+	updateAvailableDeliveryPersonnel() {
+		const assignedPersonnel = this.tours.flatMap(tour => tour.info.deliveryPersonnel);
+		this.availableDeliveryPersonnel = this.allDeliveryPersonnel.filter(person => !assignedPersonnel.includes(person));
+	}
+
+	/**
+	 * Add a delivery person to a tour.
+	 * 
+	 * @param tourId  - The ID of the tour.
+	 * @param personName - The name of the delivery person.
+	 * 
+	 */
+	addDeliveryPerson(tourId: number, personName: string) {
+		const tour = this.tours.find(t => t.id === tourId);
+		if (tour) {
+			tour.info.deliveryPersonnel.push(personName);
+			this.updateAvailableDeliveryPersonnel();
 		}
+	}
 
-		from(requests).pipe(
-			map(obs => forkJoin(obs))
-		).subscribe({
-			next: (distances) => {
-				console.log('All distances:', distances);
+	/**
+	 * Add a delivery person to a tour from an event.
+	 * 
+	 * @param tourId - The ID of the tour.
+	 * @param event - The event containing the selected person.
+	 * 
+   */
+	addDeliveryPersonFromEvent(tourId: number, event: Event) {
+		const selectElement = event.target as HTMLSelectElement;
+		const personName = selectElement.value;
+		this.addDeliveryPerson(tourId, personName);
+	}
+
+	/**
+	 * Remove a delivery person from a tour.
+	 * 
+	 * @param tourId - The ID of the tour.
+	 * @param personName - The name of the delivery person.
+	 * 
+   */
+	removeDeliveryPerson(tourId: number, personName: string) {
+		const tour = this.tours.find(t => t.id === tourId);
+		if (tour) {
+			tour.info.deliveryPersonnel = tour.info.deliveryPersonnel.filter(person => person !== personName);
+			this.updateAvailableDeliveryPersonnel();
+		}
+	}
+
+	/**
+	 * Handle changes in the checkbox for delivery personnel selection.
+	 * 
+	 * @param tourId - The ID of the tour.
+	 * @param personName - The name of the delivery person.
+	 * @param event - The event containing the checkbox state.
+	 * 
+   */
+	handleCheckboxChange(tourId: number, personName: string, event: Event) {
+		const checkbox = event.target as HTMLInputElement;
+		if (checkbox.checked) {
+			this.addDeliveryPerson(tourId, personName);
+		} else {
+			this.removeDeliveryPerson(tourId, personName);
+		}
+	}
+	/* ==*==*==*==*==*==*==*==* End Handle CheckBox List ==*==*==*==*==*==*==*==*==*==*== */
+
+
+
+	sendDistanceMatrix(distanceMatrix: number[][]) {
+		const payload = {
+			matrix: distanceMatrix,
+			k: 3,
+			start: 0
+		};
+
+		this.roService.postData(payload).subscribe({
+			next: (result) => {
+				console.log('Processed data from server:', result);
+				this.serverResponse = result;
+				this.updateTours();
 			},
 			error: (error) => {
-				console.error("Error calculating distances:", error);
+				console.error('Failed to process data:', error);
 			}
 		});
 	}
+
+	// calculateDifferenceBetweenAddresses() {
+	// 	const addresses = this.getAdress();
+	// 	const distanceMatrix: number[][] = [];
+	// 	const requests: Observable<number>[][] = [];
+
+	// 	for (let i = 0; i < addresses.length; i++) {
+	// 		distanceMatrix[i] = [];
+	// 		requests[i] = [];
+	// 		for (let j = 0; j < addresses.length; j++) {
+	// 			const request = forkJoin({
+	// 				coords1: this.geoApiService.getCoordinates(addresses[i]),
+	// 				coords2: this.geoApiService.getCoordinates(addresses[j])
+	// 			}).pipe(
+	// 				map(({ coords1, coords2 }) => this.geoApiService.calculateDistance(
+	// 					coords1.latitude, coords1.longitude,
+	// 					coords2.latitude, coords2.longitude
+	// 				))
+	// 			);
+	// 			requests[i][j] = request;
+	// 		}
+	// 	}
+
+	// 	forkJoin(requests.flat()).subscribe({
+	// 		next: (distances) => {
+	// 			let index = 0;
+	// 			for (let i = 0; i < addresses.length; i++) {
+	// 				for (let j = 0; j < addresses.length; j++) {
+	// 					distanceMatrix[i][j] = Number.parseFloat(distances[index++].toFixed(1));
+	// 				}
+	// 			}
+	// 			this.sendDistanceMatrix(distanceMatrix);
+	// 		},
+	// 		error: (error) => {
+	// 			console.error("Error calculating distances:", error);
+	// 		}
+	// 	});
+	// }
+
 
 	toggleTourDetails(tourId: number) {
 		const tour = this.tours.find(t => t.id === tourId);
@@ -112,29 +220,82 @@ export class ToursComponent {
 		this.onToursChanged.emit(this.tours);
 	}
 
-	optimizeButton() {
-		this.calculateDifferenceBetweenAddresses();
-	}
 
+	updateTours() {
+		const { tournees, longTournees } = this.serverResponse;
 
-	someFunctionThatNeedsProcessing() {
-		const listOflists: any[][] = [[1, 2], [3, 4]];
+		const mapIndicesToAddresses = (indices: number[], tours: any[]): any[] => {
+			return indices.slice(1).map(index => {
+				const tourIndex = Math.floor((index - 1) / 3);
+				const deliveryIndex = (index - 1) % 3;
+				return tours[tourIndex].info.deliveries[deliveryIndex];
+			});
+		};
 
-		this.roService.processData(listOflists).subscribe({
-			next: (result) => {
-				console.log('Processed data from server:', result);
-			},
-			error: (error) => {
-				console.error('Failed to process data:', error);
+		let updatedTours = this.tours.map((tour, index) => {
+			if (index < tournees.length) {
+				return {
+					...tour,
+					info: {
+						...tour.info,
+						distance: `${longTournees[index].toFixed(1)}km`,
+						deliveries: mapIndicesToAddresses(tournees[index], this.tours)
+					}
+				};
 			}
-		})
+			return tour;
+		});
+		for (let i = this.tours.length; i < tournees.length; i++) {
+			updatedTours.push({
+				id: i + 1,
+				name: `Tour ${String(i + 1).padStart(2, '0')}`,
+				detailsVisible: false,
+				info: {
+					distance: `${longTournees[i]}km`,
+					startTime: 'N/A', // or some default value
+					endTime: 'N/A', // or some default value
+					duration: 'N/A', // or some default value
+					truckID: `T00${i + 1}`, // or some default value
+					deliveries: mapIndicesToAddresses(tournees[i], this.tours),
+					deliveryPersonnel: [] // default value for delivery personnel
+				}
+			});
+		}
+
+		// Remove extra tours if there are fewer in the server response
+		if (updatedTours.length > tournees.length) {
+			updatedTours.length = tournees.length;
+		}
+
+		this.tours = updatedTours;
+	}
+	optimizeButton() {
+
+		// this.calculateDifferenceBetweenAddresses();
+	}
+	show() {
+		this.isOpen === true ? this.isOpen = false : this.isOpen = true;
+	}
+
+	
+	
+	
+	getAdress() {
+		let addresses = [this.depotAdresse];
+
+		this.tours.forEach(tour => {
+			tour.info.deliveries.forEach(delivery => {
+				addresses.push(delivery.address);
+			});
+		});
+
+		return addresses;
 	}
 
 
-	// updateBackend() {
-	//     this.dataService.updateTours(this.tours).subscribe({
-	//         next: (response) => console.log('Update successful', response),
-	//         error: (error) => console.error('Update failed', error)
-	//     });
-	// }
+
+
+
 }
+
+

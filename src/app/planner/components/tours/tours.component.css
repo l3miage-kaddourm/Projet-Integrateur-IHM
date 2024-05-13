@@ -17,6 +17,7 @@
 .test ul {
 	display: flex;
 	align-items: center;
+	margin-bottom: 12px;
 }
 
 .add-icon {
@@ -48,13 +49,48 @@
 	border-radius: 5px;
 }
 
-.test ul li::before {
+input[type="checkbox"] {
+	display: none;
+}
+
+.add-icon-deliv {
+	margin: 0 20px 0 5px;
+	background-color: transparent !important;
+	color: white !important;
+}
+
+
+.deliv-name {
+	background-color: var(--secondary-color);
+	border-radius: 20px;
+	padding: 2px;
+	color: white;
+	font-weight: 500;
+	margin-bottom: 2px;
+	display: flex;
+	justify-content:center;
+}
+
+#close-icon {
 	content: 'close';
 	font-family: 'Material Icons';
 	display: inline-block;
 	font-feature-settings: 'liga';
 	font-size: 17px;
 	margin-right: 5px;
+	padding: 0px 0px;
+	margin: 0 5px;
+}
+
+#add-icon {
+	content: 'add';
+	font-family: 'Material Icons';
+	display: inline-block;
+	font-feature-settings: 'liga';
+	font-size: 17px;
+	margin-right: 5px;
+	padding: 0px 0px;
+	margin: 0 5px;
 }
 
 select {

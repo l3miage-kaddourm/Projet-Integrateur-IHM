@@ -1,0 +1,11 @@
+{
+	"/api": {
+	  "target": "http://129.88.210.57:4201",
+	  "secure": false,
+	  "changeOrigin": true,
+	  "pathRewrite": {
+		"^/api": ""
+	  }
+	}
+  }
+  

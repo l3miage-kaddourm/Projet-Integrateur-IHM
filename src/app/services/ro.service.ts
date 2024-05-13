@@ -7,14 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class RoService {
 
-	// private apiUrl = 'http://localhost:8080/employes/livreurs';
-	apiUrl = 'https://jsonplaceholder.typicode.com/posts';
+	private apiUrl = '/api'; 
 
 	constructor(private http: HttpClient) { }
 
-	processData(data: any[][]): Observable<any[][]> {
-		return this.http.post<any[][]>(this.apiUrl, data);
+	getData(): Observable<any> {
+		return this.http.get<any>(`${this.apiUrl}`);
 	}
 
-
+	postData(data: any): Observable<any> {
+		return this.http.post<any>(`${this.apiUrl}/planner/planif`, data);
+	}
 }

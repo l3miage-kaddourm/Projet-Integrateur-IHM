@@ -30,4 +30,17 @@ export class PlannerDataService {
 
 		return of(localData);
 	}
+
+	getClientsAdresses() { }
+
+	getDeliveryPersonnelInfo() { }
+
+	getEntrepotAdress() { }
+
+	// updateBackend() {
+	//     this.dataService.updateTours(this.tours).subscribe({
+	//         next: (response) => console.log('Update successful', response),
+	//         error: (error) => console.error('Update failed', error)
+	//     });
+	// }
 }

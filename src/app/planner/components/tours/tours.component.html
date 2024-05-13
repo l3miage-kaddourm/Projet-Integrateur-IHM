@@ -1,3 +1,7 @@
+<!-- #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-# -->
+<!--               General Info For Each Tour            -->
+<!-- #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-# -->
+
 <div class="container">
     <div *ngFor="let tour of tours">
         <div class="tour-info" (click)="toggleTourDetails(tour.id)">
@@ -9,18 +13,58 @@
                 <span id="tour-date">14 Jan 2024</span>
             </div>
 
+            <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
+            <!-- ==*==*==*==*==*      Delivery Personnel Info      *==*==*==*==*==* -->
+            <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
             <div class="test">
                 <div class="icon-title">
                     <img src="assets/icons/delivery.png" alt="" width="30px" />
-                    <h5>Deliverise Name</h5>
+                    <h5>Delivery Personnel</h5>
                 </div>
                 <ul>
-                    <li>Alice</li>
-                    <li>Bob</li>
-                    <mat-icon class="add-icon">add</mat-icon>
+                    <li *ngFor="let person of tour.info.deliveryPersonnel">
+                        <span
+                            id="close-icon"
+                            (click)="removeDeliveryPerson(tour.id, person)"
+                            >close</span
+                        >
+                        {{ person }}
+                    </li>
+                    <span *ngIf="!isOpen" id="add-icon" (click)="show()"
+                        >add</span
+                    >
+                    <span *ngIf="isOpen" id="close-icon" (click)="show()"
+                        >close</span
+                    >
                 </ul>
+                <div *ngIf="isOpen">
+                    <div
+                        *ngFor="let person of availableDeliveryPersonnel"
+                        class="deliv-name"
+                    >
+                        <span id="add-icon" class='add-icon-deliv' (click)="show()">add</span>
+                        <label>
+                            <input
+                                type="checkbox"
+                                [value]="person"
+                                (change)="
+                                    handleCheckboxChange(
+                                        tour.id,
+                                        person,
+                                        $event
+                                    )
+                                "
+                            />
+
+                            {{ person }}
+                        </label>
+                    </div>
+                </div>
             </div>
 
+            <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
+            <!-- ==*==*==*==*==*             Truck Info            *==*==*==*==*==* -->
+            <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
             <div class="test">
                 <div class="icon-title">
                     <img src="assets/icons/truck.png" alt="" width="30px" />
@@ -35,6 +79,9 @@
                 </select>
             </div>
 
+            <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
+            <!-- ==*==*==*==*==*           Distance Info           *==*==*==*==*==* -->
+            <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
             <div class="test">
                 <div class="icon-title">
                     <img src="assets/icons/road-map.png" alt="" width="30px" />
@@ -43,30 +90,31 @@
                 <span id="distance">{{ tour.info.distance }}</span>
             </div>
 
+            <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
+            <!-- ==*==*==*==*==*         Start Time Info           *==*==*==*==*==* -->
+            <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
             <div class="test">
                 <div class="icon-title">
-                    <img
-                        src="assets/icons/stop-watch.png"
-                        alt=""
-                        width="30px"
-                    />
+                    <img src="assets/icons/stop-watch.png" width="30px" />
                     <h5>Start Time</h5>
                 </div>
                 <span id="start-time">{{ tour.info.startTime }}</span>
             </div>
 
+            <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
+            <!-- ==*==*==*==*==*           End Time Info           *==*==*==*==*==* -->
+            <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
             <div class="test">
                 <div class="icon-title">
-                    <img
-                        src="assets/icons/time-manager.png"
-                        alt=""
-                        width="30px"
-                    />
+                    <img src="assets/icons/time-manager.png" width="30px" />
                     <h5>End Time</h5>
                 </div>
                 <span id="end-time">{{ tour.info.endTime }}</span>
             </div>
 
+            <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
+            <!-- ==*==*==*==*==*           Duration Info           *==*==*==*==*==* -->
+            <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
             <div class="test">
                 <div class="icon-title">
                     <img src="assets/icons/hourglass.png" alt="" width="30px" />
@@ -76,9 +124,9 @@
             </div>
         </div>
 
-        <!-- =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=* -->
-        <!--              Start  details for each tour          -->
-        <!-- =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=* -->
+        <!-- #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-# -->
+        <!--              Start  details for each tour           -->
+        <!-- #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-# -->
         <div class="tour-details" *ngIf="tour.detailsVisible">
             <table
                 cdkDropList
@@ -134,3 +182,8 @@
     {{ data | json }}
 </div>
 <ng-template #loading><p>Loading...</p></ng-template> -->
+
+<div *ngIf="serverResponse">
+    <h3>Server Response:</h3>
+    <pre>{{ serverResponse | json }}</pre>
+</div>
