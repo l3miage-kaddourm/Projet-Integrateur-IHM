@@ -1,0 +1,58 @@
+.container {
+	height: 100%;
+
+	background-color: var(--primary-color);
+	display: flex;
+	align-items: center;
+}
+
+.mat-toolbar {
+	background-color: var(--primary-color) !important;
+}
+
+.mat-button {
+	color: var(--primary-color) !important;
+}
+
+mat-mdc-focus-indicator {
+	background-color: red !important;
+}
+
+mdc-button__label {
+	background-color: red;
+}
+
+mat-card-title {
+	color: var(--primary-color);
+}
+
+mat-card-header {
+	margin-bottom: 40px;
+	display: flex;
+	justify-content: center;
+}
+
+.input-field {
+	display: block;
+	text-align: center;
+}
+
+.login-card {
+	max-width: 400px;
+	margin: 50px auto;
+	padding: 20px;
+}
+
+.login-btn {
+	background-color: var(--primary-color);
+	margin-top: 30px;
+}
+
+form {
+	display: block;
+	text-align: center;
+}
+
+input {
+	width: 400px;
+}

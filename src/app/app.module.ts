@@ -23,6 +23,12 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { CommonModule } from "@angular/common";
 import { GeoApiGouvAddressModule } from "@placeme/ngx-geo-api-gouv-address";
+import { DeliveryPersoComponent } from './delivery-perso/delivery-perso.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
 	declarations: [
@@ -35,7 +41,9 @@ import { GeoApiGouvAddressModule } from "@placeme/ngx-geo-api-gouv-address";
 		OrdersComponent,
 		DeliveryPersonComponent,
 		OrderDetailComponent,
-		ToursComponent
+		ToursComponent,
+		DeliveryPersoComponent,
+		SignInComponent
 	],
 
 	imports: [
@@ -47,10 +55,16 @@ import { GeoApiGouvAddressModule } from "@placeme/ngx-geo-api-gouv-address";
 		MatMenuModule,
 		HttpClientModule,
 		DragDropModule,
-		CommonModule, 
+		CommonModule,
 		GeoApiGouvAddressModule.forRoot(),
-
+		FormsModule,
+		ReactiveFormsModule,
+		MatInputModule,
+		MatCardModule,
+		MatButtonModule,
+		MatFormFieldModule,
 	],
+
 	providers: [
 		provideClientHydration(),
 		provideAnimationsAsync(),
