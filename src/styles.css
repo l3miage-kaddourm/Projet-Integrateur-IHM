@@ -10,7 +10,7 @@ body {
 
 :root {
 	--primary-color: #74a1b6;
-	--secondary-color: #fa722c;
+	--secondary-color: #dd9345;
 	--background-color: #f0f0f0;
 	--text-color: #f0f0f0;
 }
@@ -59,6 +59,10 @@ a {
 	padding-bottom: 10px;
 }
 
+.table tr {
+	margin: 0 45px;
+}
+
 th {
 	color: var(--secondary-color);
 	padding: 10px 10px;
@@ -95,5 +99,13 @@ td {
 .orders h2 {
 	color: var(--primary-color);
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+}

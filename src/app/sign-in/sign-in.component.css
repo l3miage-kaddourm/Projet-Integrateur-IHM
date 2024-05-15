@@ -38,13 +38,12 @@ mat-card-header {
 }
 
 .login-card {
-	max-width: 400px;
+	/* max-width: 400px; */
 	margin: 50px auto;
 	padding: 20px;
 }
 
 .login-btn {
-	background-color: var(--primary-color);
 	margin-top: 30px;
 }
 
@@ -53,6 +52,23 @@ form {
 	text-align: center;
 }
 
-input {
+
+mat-form-field {
 	width: 400px;
+	margin: 5px auto;
+}
+
+mat-card {
+	width: 600px;
+}
+
+.login-btn-enabled {
+	background-color: green;
+	color: white;
+}
+
+/* Define the styles for the button when it is disabled */
+.login-btn-disabled {
+	background-color: grey;
+	color: darkgray;
 }

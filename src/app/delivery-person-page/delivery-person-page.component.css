@@ -8,29 +8,25 @@
 	padding: 25px 50px;
 	border-radius: 7px;
 	cursor: pointer;
+	margin: 20px 60px;
 }
 
-.test {
+.box {
 	text-align: center;
 }
 
-.test ul {
+.box ul {
 	display: flex;
 	align-items: center;
 	margin-bottom: 12px;
+	margin-top: 10px;
 }
 
-.add-icon {
-	cursor: pointer;
-	font-size: 18px;
-	padding-top: 7px;
-	color: white;
-}
 
-.test span {
+.box span {
 	margin: 0 5px;
 	background-color: white;
-	padding: 6px 10px;
+	padding: 10px 12px;
 	display: flex;
 	align-items: center;
 	color: var(--secondary-color);
@@ -38,10 +34,10 @@
 	border-radius: 5px;
 }
 
-.test ul li {
+.box ul li {
 	margin: 0 5px;
 	background-color: white;
-	padding: 5px 12px 5px 5px;
+	padding: 10px 12px 10px 12px;
 	display: flex;
 	align-items: center;
 	cursor: pointer;
@@ -49,15 +45,8 @@
 	border-radius: 5px;
 }
 
-input[type="checkbox"] {
-	display: none;
-}
 
-.add-icon-deliv {
-	margin: 0 20px 0 5px;
-	background-color: transparent !important;
-	color: white !important;
-}
+
 
 
 .deliv-name {
@@ -71,38 +60,18 @@ input[type="checkbox"] {
 	justify-content: center;
 }
 
-#close-icon {
-	content: 'close';
-	font-family: 'Material Icons';
-	display: inline-block;
-	font-feature-settings: 'liga';
-	font-size: 17px;
-	margin-right: 5px;
-	padding: 0px 0px;
-	margin: 0 5px;
-}
-
-#add-icon {
-	content: 'add';
-	font-family: 'Material Icons';
-	display: inline-block;
-	font-feature-settings: 'liga';
-	font-size: 17px;
-	margin-right: 5px;
-	padding: 0px 0px;
-	margin: 0 5px;
-}
 
 select {
 	border: none;
-	padding: 8px 8px;
-	background-color: white;
+	padding: 10px 10px;
+	background-color: transparent;
 	margin: 0 5px;
 	outline: none;
 	text-align: center;
-	width: 80px;
-	color: var(--secondary-color);
+	width: 120px;
+	color: white;
 	border-radius: 5px;
+
 }
 
 select option {
@@ -111,29 +80,30 @@ select option {
 
 select optgroup {
 	background: #fff;
-	/* color: #222020; */
 	border-radius: 5px;
 	border: none;
 	color: var(--secondary-color);
 }
 
-
 .icon-title {
 	justify-content: center;
 	text-align: center;
+	/* padding-top: 15px; */
+
 }
 
 .icon-title img {
 	object-fit: contain;
+	padding-top: 8px;
 }
 
 h5 {
-	margin-top: 5px;
+	margin-top: 7px;
+	margin-top: 4px;
 	color: white;
 	letter-spacing: 1.3px;
 	font-weight: 500;
 }
-
 
 /*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*/
 /*            Start  details for each tour         */
@@ -141,6 +111,7 @@ h5 {
 .tour-details {
 	display: flex;
 	justify-content: center;
+	color: white;
 }
 
 .tour-details table {
@@ -149,7 +120,7 @@ h5 {
 
 .tour-details td {
 	letter-spacing: 1.1px;
-	background-color: #eeff;
+	background-color: #dd9345;
 }
 
 .tour-details table {
@@ -165,6 +136,7 @@ h5 {
 
 .cdk-drag-preview {
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+	/* border: 1px solid #e10f0f; */
 	background-color: var(--primary-color);
 	color: white;
 	width: 50%;
@@ -175,25 +147,10 @@ h5 {
 }
 
 tr.cdk-drag {
-	background-color: #f9f9f9;
+	background-color: #E5A053;
 	cursor: move;
 }
 
 /*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*/
 /*              End details for each tour          */
 /*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*/
-
-
-
-
-.control-panel {
-	margin-left: auto;
-	margin-right: auto;
-	width: 400px;
-}
-
-.control-panel button {
-	margin: 0 10px;
-	padding: 20px;
-	border-radius: 20px;
-}

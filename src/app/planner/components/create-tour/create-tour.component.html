@@ -1,0 +1,39 @@
+<div class="tour-details container">
+    <!-- First Table -->
+    <table
+        cdkDropList
+        [cdkDropListData]="orders"
+        (cdkDropListDropped)="drop($event)"
+    >
+        <tr>
+            <th>Delivery</th>
+            <th>Address</th>
+            <th>Status</th>
+        </tr>
+        <tr
+            cdkDrag
+            *ngFor="
+                let order of showAllOrders ? orders : (orders | slice : 0 : 10)
+            "
+        >
+            <td>{{ order.reference }}</td>
+            <td>{{ formatAddress(order) }}</td>
+            <td>{{ order.etat }}</td>
+
+            <ng-template cdkDragPreview>
+                <table>
+                    <tr>
+                        <td>{{ order.reference }}</td>
+                        <td>{{ formatAddress(order) }}</td>
+                        <td>{{ order.etat }}</td>
+                    </tr>
+                </table>
+            </ng-template>
+        </tr>
+    </table>
+
+    <button (click)="toggleShowAllOrders()">
+        {{ showAllOrders ? "Show Less" : "Show All" }}
+    </button>
+
+</div>

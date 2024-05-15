@@ -5,35 +5,54 @@
             <tr>
                 <th>Order ID</th>
                 <th>Date</th>
-                <th>Client Name</th>
+                <th>Last Name</th>
+                <th>First Name</th>
                 <th>Email</th>
                 <th>Address</th>
                 <th>City</th>
                 <th>Postal Code</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
-            <ng-container *ngFor="let order of showAll ? orders : (orders | slice:0:10); let i = index">
-                <tr (click)="toggleOrderDetails(order.orderNum)"
-                    [ngClass]="{ 'even-row': i % 2 === 0, 'odd-row': i % 2 !== 0 }">
-                    <td>{{ order.orderNum }}</td>
-                    <td>{{ order.date | date: 'yyyy-MM-dd' }}</td>
-                    <td>{{ order.clientName }}</td>
-                    <td>{{ order.email }}</td>
-                    <td>{{ order.address }}</td>
-                    <td>{{ order.city }}</td>
-                    <td>{{ order.postalCode }}</td>
+            <ng-container
+                *ngFor="
+                    let order of showAll ? orders : (orders | slice : 0 : 10);
+                    let i = index
+                "
+            >
+                <tr
+                    (click)="toggleOrderDetails(order.reference)"
+                    [ngClass]="{
+                        'even-row': i % 2 === 0,
+                        'odd-row': i % 2 !== 0
+                    }"
+                >
+                    <td>{{ order.reference }}</td>
+                    <td>{{ order.dateDeCreation | date : "yyyy-MM-dd" }}</td>
+                    <td>{{ order.client.nom }}</td>
+                    <td>{{ order.client.prenom }}</td>
+                    <td>{{ order.client.email }}</td>
+                    <td>{{ order.client.adresse.adresse }}</td>
+                    <td>{{ order.client.adresse.ville }}</td>
+                    <td>{{ order.client.adresse.codePostal }}</td>
+                    <td>{{ order.etat }}</td>
                 </tr>
                 <!-- Conditionally render the expanded row below the current row -->
-                <tr *ngIf="expandedOrderId === order.orderNum" class="order-details">
+                <tr
+                    *ngIf="expandedOrderId === order.reference"
+                    class="order-details"
+                >
                     <td colspan="7">
-                        <app-order-detail [order]="order.details"></app-order-detail>
+                        <app-order-detail
+                            [order]="order.lignesProduits"
+                        ></app-order-detail>
                     </td>
                 </tr>
             </ng-container>
         </tbody>
     </table>
     <button (click)="toggleShowAll()" class="btn btn-link">
-        {{ showAll ? 'Show Less' : 'Show All' }}
+        {{ showAll ? "Show Less" : "Show All" }}
     </button>
 </div>

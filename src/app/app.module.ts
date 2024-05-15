@@ -23,12 +23,16 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { CommonModule } from "@angular/common";
 import { GeoApiGouvAddressModule } from "@placeme/ngx-geo-api-gouv-address";
-import { DeliveryPersoComponent } from './delivery-perso/delivery-perso.component';
+import { DeliveryPersonPageComponent } from './delivery-person-page/delivery-person-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { CreateTourComponent } from './planner/components/create-tour/create-tour.component';
+import { EmailPipe } from './email.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
 	declarations: [
@@ -42,8 +46,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 		DeliveryPersonComponent,
 		OrderDetailComponent,
 		ToursComponent,
-		DeliveryPersoComponent,
-		SignInComponent
+		DeliveryPersonPageComponent,
+		SignInComponent,
+		CreateTourComponent,
+		EmailPipe
 	],
 
 	imports: [
@@ -63,6 +69,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 		MatCardModule,
 		MatButtonModule,
 		MatFormFieldModule,
+		BrowserAnimationsModule,
+		MatTableModule,
 	],
 
 	providers: [

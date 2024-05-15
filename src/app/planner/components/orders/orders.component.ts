@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Order } from '../../models/order.model';
+import { PlannerDataService } from '../../../services/planner-data.service';
 
 @Component({
 	selector: 'app-orders',
@@ -7,27 +8,19 @@ import { Order } from '../../models/order.model';
 	styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-	orders: Order[] = [];
+	orders: any[] | undefined;
 	showAll: boolean = false;
+	constructor(private dataService: PlannerDataService) { }
 
 	ngOnInit(): void {
-
-		this.orders = Array.from({ length: 20 }, (_, i) => ({
-			orderNum: `ORD${i + 1}`,
-			date: new Date().toISOString().split('T')[0],
-			clientName: `Client ${i + 1}`,
-			email: `client${i + 1}@example.com`,
-			address: `1234 Elm Street ${i + 1}`,
-			city: `City ${i + 1}`,
-			postalCode: `1000${i}`.slice(-5),
-			details: [
-				{
-					itemId: `#${i + 1}`,
-					description: `Description for item ${i + 1}`,
-					quantity: 2, // Assuming quantity is a number and not a string
-				},
-			]
-		}));
+		this.dataService.getOrders().subscribe({
+			next: (data) => {
+				this.orders = data;
+			},
+			error: (error) => {
+				console.error('There was an error!', error);
+			}
+		});
 	}
 
 	expandedOrderId: string | null = null;

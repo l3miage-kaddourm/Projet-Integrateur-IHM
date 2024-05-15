@@ -1,11 +1,18 @@
 {
-	"/api": {
-	  "target": "http://129.88.210.57:4201",
-	  "secure": false,
-	  "changeOrigin": true,
-	  "pathRewrite": {
-		"^/api": ""
-	  }
+	"/apiro": {
+		"target": "http://129.88.210.57:4201",
+		"secure": false,
+		"changeOrigin": true,
+		"pathRewrite": {
+			"^/apiro": ""
+		}
+	},
+	"/apibackend": {
+		"target": "http://129.88.210.57:8080",
+		"secure": false,
+		"changeOrigin": true,
+		"pathRewrite": {
+			"^/apibackend": ""
+		}
 	}
-  }
-  
+}

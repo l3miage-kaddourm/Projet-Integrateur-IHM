@@ -8,15 +8,16 @@
 }
 
 .name::first-letter {
-	color: #fa722c;
+	color: var(--secondary-color);
 	font-weight: bolder;
 	font-size: 40px;
 }
 
 mat-toolbar {
-	background-color: #74a1b6;
+	background-color: var(--primary-color);
 	color: white;
-	padding: 50px 50px;
+	padding: 50px 50px !important;
+	margin-bottom: 0 !important;
 }
 
 mat-toolbar button {
@@ -25,24 +26,25 @@ mat-toolbar button {
 }
 
 .accounts {
-	background-color: #fa722c;
+	background-color: var(--secondary-color);
 	padding: 8px 12px;
 	border-radius: 20px;
 }
 
 .accounts:hover {
-	color: #fa722c;
+	color: var(--secondary-color);
 	background-color: white;
 }
 
 .nav {
-	width: 550px;
+	/* width: 550px; */
 	display: flex;
 	justify-content: space-between;
 }
 
 .nav button {
 	padding: 0 20px;
+	margin: 0 10px;
 	transition: 0.2s;
 }
 
@@ -79,7 +81,7 @@ mat-toolbar {
 	height: 35px;
 	border-radius: 50%;
 	border: 0.5px solid #fff;
-	background-color: #fa722c;
+	background-color: var(--secondary-color);
 	overflow: hidden;
 }
 

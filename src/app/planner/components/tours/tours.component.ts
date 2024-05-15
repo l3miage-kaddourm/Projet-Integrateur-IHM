@@ -277,9 +277,9 @@ export class ToursComponent {
 		this.isOpen === true ? this.isOpen = false : this.isOpen = true;
 	}
 
-	
-	
-	
+
+
+
 	getAdress() {
 		let addresses = [this.depotAdresse];
 

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { OrderDetail } from '../../models/order.model';
+import { LignesProduits } from '../../models/order.model';
 
 @Component({
 	selector: 'app-order-detail',
@@ -7,5 +7,5 @@ import { OrderDetail } from '../../models/order.model';
 	styleUrl: './order-detail.component.css'
 })
 export class OrderDetailComponent {
-	@Input() order!: OrderDetail[];
+	@Input() order!: LignesProduits[];
 }

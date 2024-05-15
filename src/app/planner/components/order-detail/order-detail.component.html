@@ -2,13 +2,17 @@
     <thead>
         <tr>
             <th>Product ID</th>
+            <th>Title</th>
             <th>Quantity</th>
-            <th>description</th>
+            <th>Montant</th>
+            <th>Need Montage</th>
         </tr>
     </thead>
-    <tr>
-        <td>{{ order[0].itemId }}</td>
-        <td>{{ order[0].description }}</td>
-        <td>{{ order[0].quantity }}</td>
+    <tr *ngFor="let item of order">
+        <td>{{ item.produit.reference }}</td>
+        <td>{{ item.produit.titre }}</td>
+        <td>{{ item.quantite }}</td>
+        <td>{{ item.produit.prix * item.quantite }}</td>
+        <td>{{ item.produit.optionMontage ? "Yes" : "No" }}</td>
     </tr>
 </table>

@@ -3,6 +3,7 @@
         <mat-card-header>
             <mat-card-title>Login</mat-card-title>
         </mat-card-header>
+
         <mat-card-content>
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="input-field">
@@ -39,9 +40,12 @@
                 <button
                     class="login-btn"
                     mat-raised-button
-                    color="background-color: red"
                     type="submit"
                     [disabled]="loginForm.invalid"
+                    [ngClass]="{
+                        'login-btn-enabled': !loginForm.invalid,
+                        'login-btn-disabled': loginForm.invalid
+                    }"
                 >
                     Login
                 </button>

@@ -9,6 +9,7 @@
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Phone Number</th>
+                <th>Entrepot</th>
             </tr>
         </thead>
         <tbody>
@@ -22,13 +23,23 @@
                 [ngClass]="{ 'even-row': i % 2 === 0, 'odd-row': i % 2 !== 0 }"
                 [ngClass]="{ 'even-row': i % 2 === 0, 'odd-row': i % 2 !== 0 }"
             >
-                <td>{{ person.id }}</td>
-                <td><img src="{{ person.profil }}" alt="" width="25px" /></td>
-                <td>{{ person.firstName }}</td>
-                <td>{{ person.lastName }}</td>
-                <td>{{ person.email }}</td>
-                <td>{{ person.phoneNumber }}</td>
+                <td>{{ person.trigramme }}</td>
+                <td>
+                    <img
+                        src="assets/icons/bussiness-man.png"
+                        alt=""
+                        width="25px"
+                    />
+                </td>
+                <td>{{ person.prenom }}</td>
+                <td>{{ person.nom }}</td>
+                <td>{{ person.email | email : person.prenom : person.nom }}</td>
+                <td>{{ person.telephone }}</td>
+                <td>{{ person.entrepot }}</td>
             </tr>
         </tbody>
     </table>
+    <button (click)="toggleShowAll()" class="btn btn-link">
+        {{ showAll ? "Show Less" : "Show All" }}
+    </button>
 </div>

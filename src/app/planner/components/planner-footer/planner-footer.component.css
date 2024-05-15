@@ -6,6 +6,8 @@
 	z-index: 0;
 	text-align: center;
 	background-color: var(--primary-color);
+	width: 100%;
+	bottom: 0;
 }
 
 
@@ -18,9 +20,10 @@
 	margin: 20px auto;
 	color: white;
 }
+
 .footer .container p::first-letter {
 	font-size: 40px;
-	color: orange;
+	color: var(--secondary-color);
 }
 
 .footer .social-icons {
@@ -41,7 +44,7 @@
 
 
 .footer .container>p:last-of-type span {
-	color: orange;
+	color: var(--secondary-color);
 	font-weight: bolder;
 	letter-spacing: 1.2px
 }
@@ -49,4 +52,5 @@
 #copt {
 	font-size: 12px;
 }
+
 /* *=*=*=*=*=*=*=*=*=*=* End Footer *=*=*=*=*=*=*=*=* */

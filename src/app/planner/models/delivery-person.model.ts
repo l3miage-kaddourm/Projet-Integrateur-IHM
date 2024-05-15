@@ -1,8 +1,9 @@
 export interface DeliveryPerson {
-	id: string;
-	firstName: string;
-	lastName: string;
+	trigramme: string;
+	prenom: string;
+	nom: string;
 	email: string;
-	phoneNumber: string;
-	profil: string;
+	telephone: string;
+	photo: string;
+	entrepot: string
 }

@@ -1,7 +1,3 @@
-.sub-table {
-	padding: 0px 10px;
-
-}
 
 .sub-table td,
 .sub-table th {
@@ -14,6 +10,7 @@
 	margin: 0 30px;
 	border-collapse: separate;
 	border-spacing: 5px 5px;
+	padding: 0px 10px;
 }
 
 th {

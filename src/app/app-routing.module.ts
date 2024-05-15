@@ -4,6 +4,7 @@ import { DeliveryPersonComponent } from './planner/components/delivery-person/de
 import { PlannerDashboardComponent } from './planner/components/planner-dashboard/planner-dashboard.component';
 import { OrdersComponent } from './planner/components/orders/orders.component';
 import { ToursComponent } from './planner/components/tours/tours.component';
+import { CreateTourComponent } from './planner/components/create-tour/create-tour.component';
 
 
 // Define your routes
@@ -13,6 +14,7 @@ const routes: Routes = [
 	{ path: 'delivery-person', component: DeliveryPersonComponent },
 	{ path: 'orders', component: OrdersComponent },
 	{ path: 'tour', component: ToursComponent },
+	{ path: 'create-tour', component: CreateTourComponent },
 ];
 
 @NgModule({
