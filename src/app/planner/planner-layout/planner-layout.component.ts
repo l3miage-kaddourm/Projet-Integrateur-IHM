@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PlannerDataService } from '../../services/planner-data.service';
+import { ToursComponent } from '../components/tours/tours.component';
+import { SimpleOrders } from '../models/order.model';
 
 @Component({
 	selector: 'app-planner-layout',
@@ -20,10 +22,4 @@ export class PlannerLayoutComponent {
 			error: (error) => console.error('There was an error!', error)
 		});
 	}
-
-	// handleToursChange(updatedTours) {
-	// 	console.log('Tours updated:', updatedTours);
-	// 	// Implement additional actions based on the updated tours
-	// }
-
 }

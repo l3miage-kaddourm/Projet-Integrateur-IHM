@@ -44,3 +44,10 @@ export interface LignesProduits {
 		optionMontage: boolean
 	}
 }
+
+
+export interface SimpleOrders {
+	reference: string;
+	adresse: string;
+	etat: string;
+}

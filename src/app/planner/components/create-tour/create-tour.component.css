@@ -1,0 +1,58 @@
+.orders {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 85%;
+}
+
+.container {
+	display: grid;
+	grid-template-columns: repeat(2, 2fr);
+}
+
+.drop-container {
+	border: 2px var(--secondary-color) dashed;
+	height: min-content;
+	min-height: 120px;
+	max-height: 500px;
+	background-color: #dd934530;
+	color: var(--primary-color);
+	margin: 35px;
+}
+
+.drop-container table {
+	margin: 3px;
+	padding: 10px 20px;
+}
+
+.drop-container th {
+	padding: 5px;
+	margin: 0 20px;
+}
+
+.even-row-spec {
+	background-color: var(--secondary-color);
+	color: white;
+}
+
+.odd-row-spec {
+	background-color: white;
+	color: var(--secondary-color);
+}
+
+.creat-tour {
+	text-align: center;
+	padding: 20px;
+}
+
+.vald-btn {
+	padding: 15px 40px;
+	background-color: var(--primary-color);
+	color: white;
+	border-radius: 20px;
+	border-style: none;
+}
+
+.vald-btn:hover {
+	background-color: var(--secondary-color);
+}

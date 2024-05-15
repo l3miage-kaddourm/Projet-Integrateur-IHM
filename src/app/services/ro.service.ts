@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class RoService {
 
-	private apiUrl = '/api'; 
+	private apiUrl = '/apiro';
 
 	constructor(private http: HttpClient) { }
 

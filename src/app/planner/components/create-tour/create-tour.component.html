@@ -1,39 +1,89 @@
-<div class="tour-details container">
-    <!-- First Table -->
-    <table
-        cdkDropList
-        [cdkDropListData]="orders"
-        (cdkDropListDropped)="drop($event)"
-    >
-        <tr>
-            <th>Delivery</th>
-            <th>Address</th>
-            <th>Status</th>
-        </tr>
-        <tr
-            cdkDrag
-            *ngFor="
-                let order of showAllOrders ? orders : (orders | slice : 0 : 10)
-            "
-        >
-            <td>{{ order.reference }}</td>
-            <td>{{ formatAddress(order) }}</td>
-            <td>{{ order.etat }}</td>
-
-            <ng-template cdkDragPreview>
-                <table>
+<div class="container">
+    <div class="table-container">
+        <div class="orders">
+            <table
+                cdkDropList
+                id="pendingOrders"
+                [cdkDropListData]="pendingOrders"
+                [cdkDropListConnectedTo]="['droppedOrders']"
+                (cdkDropListDropped)="drop($event)"
+                class="table"
+            >
+                <thead>
                     <tr>
-                        <td>{{ order.reference }}</td>
-                        <td>{{ formatAddress(order) }}</td>
-                        <td>{{ order.etat }}</td>
+                        <th>Delivery</th>
+                        <th>Address</th>
+                        <th>Status</th>
                     </tr>
-                </table>
-            </ng-template>
-        </tr>
-    </table>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="
+                            let item of showAllOrders
+                                ? pendingOrders
+                                : (pendingOrders | slice : 0 : 10);
+                            let i = index
+                        "
+                        [ngClass]="{
+                            'even-row': i % 2 === 0,
+                            'odd-row': i % 2 !== 0
+                        }"
+                        [ngClass]="{
+                            'even-row': i % 2 === 0,
+                            'odd-row': i % 2 !== 0
+                        }"
+                        cdkDrag
+                    >
+                        <td>{{ item.reference }}</td>
+                        <td>{{ item.adresse }}</td>
+                        <td>{{ item.etat }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <button (click)="toggleShowAllOrders()">
-        {{ showAllOrders ? "Show Less" : "Show All" }}
-    </button>
+        <button (click)="toggleShowAllOrders()" class="btn btn-link">
+            {{ showAllOrders ? "Show Less" : "Show All" }}
+        </button>
+    </div>
 
+    <div class="creat-tour">
+        <div class="table-container drop-container">
+            <table
+                cdkDropList
+                id="droppedOrders"
+                [cdkDropListData]="droppedOrders"
+                [cdkDropListConnectedTo]="['pendingOrders']"
+                (cdkDropListDropped)="drop($event)"
+                class="table"
+            >
+                <thead>
+                    <tr>
+                        <th>Delivery</th>
+                        <th>Address</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let item of droppedOrders; let j = index"
+                        cdkDrag
+                        [ngClass]="{
+                            'even-row-spec': j % 2 === 0,
+                            'odd-row-spec': j % 2 !== 0
+                        }"
+                        [ngClass]="{
+                            'even-row-spec': j % 2 === 0,
+                            'odd-row-spec': j % 2 !== 0
+                        }"
+                    >
+                        <td>{{ item.reference }}</td>
+                        <td>{{ item.adresse }}</td>
+                        <td>{{ item.etat }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button class="vald-btn" (click)="validate()">Valider</button>
+    </div>
 </div>

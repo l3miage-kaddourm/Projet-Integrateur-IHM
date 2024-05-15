@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PlannerDataService } from '../../../services/planner-data.service';
-import { Order } from '../../models/order.model';
+import { Order, SimpleOrders } from '../../models/order.model';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { SharedService } from '../../../services/shared.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,14 +13,17 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 })
 
 export class CreateTourComponent implements OnInit {
-	orders: Order[] = [];
-	pendingOrders: Order[] = [];
+
+	@Output() onValidate: EventEmitter<SimpleOrders[]> = new EventEmitter();
+
+	orders: SimpleOrders[] = [];
+	droppedOrders: SimpleOrders[] = [];
+	pendingOrders: SimpleOrders[] = [];
+
 	showAllOrders: boolean = false;
 
-	droppedOrders: any[] = [];
 
-
-	constructor(private plannerDataService: PlannerDataService) { }
+	constructor(private plannerDataService: PlannerDataService, private sharedService: SharedService, private router: Router) { }
 
 
 	ngOnInit(): void {
@@ -31,8 +36,12 @@ export class CreateTourComponent implements OnInit {
 
 	loadOrders(): void {
 		this.plannerDataService.getOrders().subscribe((data: Order[]) => {
-			this.orders = data;
-			this.pendingOrders = this.orders.filter(order => order.etat === 'ouvert');
+			this.orders = data.map(order => ({
+				reference: order.reference,
+				adresse: this.formatAddress(order),
+				etat: order.etat
+			}));
+			this.pendingOrders = this.orders.filter(order => order.etat === 'ouverte');
 		}, error => {
 			console.error('Error fetching orders:', error);
 		});
@@ -43,19 +52,17 @@ export class CreateTourComponent implements OnInit {
 		return `${adresse} ${codePostal} ${ville}`;
 	}
 
-
-	drop(event: CdkDragDrop<Order[]>) {
+	drop(event: CdkDragDrop<SimpleOrders[]>) {
 		if (event.previousContainer === event.container) {
 			moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
 		} else {
-			transferArrayItem(
-				event.previousContainer.data,
-				event.container.data,
-				event.previousIndex,
-				event.currentIndex
-			);
+			transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
 		}
 	}
 
-
+	validate(): void {
+		this.sharedService.updateDroppedOrders(this.droppedOrders);
+		console.log("Dropped orders validated:", this.droppedOrders); // Debugging line
+		this.router.navigate(['/tour']);
+	}
 }

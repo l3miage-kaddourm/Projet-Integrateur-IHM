@@ -144,9 +144,10 @@ export class ToursComponent {
 	}
 	/* ==*==*==*==*==*==*==*==* End Handle CheckBox List ==*==*==*==*==*==*==*==*==*==*== */
 
-
-
 	sendDistanceMatrix(distanceMatrix: number[][]) {
+		console.log("_____HERE____");
+		console.log(distanceMatrix);
+		return;
 		const payload = {
 			matrix: distanceMatrix,
 			k: 3,
@@ -157,7 +158,7 @@ export class ToursComponent {
 			next: (result) => {
 				console.log('Processed data from server:', result);
 				this.serverResponse = result;
-				this.updateTours();
+				// this.updateTours();
 			},
 			error: (error) => {
 				console.error('Failed to process data:', error);
@@ -165,43 +166,45 @@ export class ToursComponent {
 		});
 	}
 
-	// calculateDifferenceBetweenAddresses() {
-	// 	const addresses = this.getAdress();
-	// 	const distanceMatrix: number[][] = [];
-	// 	const requests: Observable<number>[][] = [];
+	calculateDifferenceBetweenAddresses() {
+		this.getAdress().subscribe(addresses => {
+			const distanceMatrix: number[][] = [];
+			const requests: Observable<number>[][] = [];
 
-	// 	for (let i = 0; i < addresses.length; i++) {
-	// 		distanceMatrix[i] = [];
-	// 		requests[i] = [];
-	// 		for (let j = 0; j < addresses.length; j++) {
-	// 			const request = forkJoin({
-	// 				coords1: this.geoApiService.getCoordinates(addresses[i]),
-	// 				coords2: this.geoApiService.getCoordinates(addresses[j])
-	// 			}).pipe(
-	// 				map(({ coords1, coords2 }) => this.geoApiService.calculateDistance(
-	// 					coords1.latitude, coords1.longitude,
-	// 					coords2.latitude, coords2.longitude
-	// 				))
-	// 			);
-	// 			requests[i][j] = request;
-	// 		}
-	// 	}
+			for (let i = 0; i < addresses.length; i++) {
+				distanceMatrix[i] = [];
+				requests[i] = [];
+				for (let j = 0; j < addresses.length; j++) {
+					const request = forkJoin({
+						coords1: this.geoApiService.getCoordinates(addresses[i]),
+						coords2: this.geoApiService.getCoordinates(addresses[j])
+					}).pipe(
+						map(({ coords1, coords2 }) => this.geoApiService.calculateDistance(
+							coords1.latitude, coords1.longitude,
+							coords2.latitude, coords2.longitude
+						))
+					);
+					requests[i][j] = request;
+				}
+			}
 
-	// 	forkJoin(requests.flat()).subscribe({
-	// 		next: (distances) => {
-	// 			let index = 0;
-	// 			for (let i = 0; i < addresses.length; i++) {
-	// 				for (let j = 0; j < addresses.length; j++) {
-	// 					distanceMatrix[i][j] = Number.parseFloat(distances[index++].toFixed(1));
-	// 				}
-	// 			}
-	// 			this.sendDistanceMatrix(distanceMatrix);
-	// 		},
-	// 		error: (error) => {
-	// 			console.error("Error calculating distances:", error);
-	// 		}
-	// 	});
-	// }
+			forkJoin(requests.flat()).subscribe({
+				next: (distances) => {
+					let index = 0;
+					for (let i = 0; i < addresses.length; i++) {
+						for (let j = 0; j < addresses.length; j++) {
+							distanceMatrix[i][j] = Number.parseFloat(distances[index++].toFixed(1));
+						}
+					}
+					this.sendDistanceMatrix(distanceMatrix);
+					console.log(distanceMatrix);
+				},
+				error: (error) => {
+					console.error("Error calculating distances:", error);
+				}
+			});
+		});
+	}
 
 
 	toggleTourDetails(tourId: number) {
@@ -219,7 +222,6 @@ export class ToursComponent {
 	signalChange() {
 		this.onToursChanged.emit(this.tours);
 	}
-
 
 	updateTours() {
 		const { tournees, longTournees } = this.serverResponse;
@@ -252,12 +254,12 @@ export class ToursComponent {
 				detailsVisible: false,
 				info: {
 					distance: `${longTournees[i]}km`,
-					startTime: 'N/A', // or some default value
-					endTime: 'N/A', // or some default value
-					duration: 'N/A', // or some default value
-					truckID: `T00${i + 1}`, // or some default value
+					startTime: 'N/A',
+					endTime: 'N/A',
+					duration: 'N/A',
+					truckID: `T00${i + 1}`,
 					deliveries: mapIndicesToAddresses(tournees[i], this.tours),
-					deliveryPersonnel: [] // default value for delivery personnel
+					deliveryPersonnel: []
 				}
 			});
 		}
@@ -271,31 +273,25 @@ export class ToursComponent {
 	}
 	optimizeButton() {
 
-		// this.calculateDifferenceBetweenAddresses();
+		this.calculateDifferenceBetweenAddresses();
 	}
+
 	show() {
 		this.isOpen === true ? this.isOpen = false : this.isOpen = true;
 	}
 
 
+	getAdress(): Observable<string[]> {
+		return new Observable(observer => {
+			let addresses = [this.depotAdresse];
 
-
-	getAdress() {
-		let addresses = [this.depotAdresse];
-
-		this.tours.forEach(tour => {
-			tour.info.deliveries.forEach(delivery => {
-				addresses.push(delivery.address);
+			this.dataService.getClientsAddresses().subscribe(clientAddresses => {
+				addresses.push(...clientAddresses.slice(0, 5));
+				console.log('Client Addresses:', addresses);
+				observer.next(addresses);
+				observer.complete();
 			});
 		});
-
-		return addresses;
 	}
 
-
-
-
-
 }
-
-
