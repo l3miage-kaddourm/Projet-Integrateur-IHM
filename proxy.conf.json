@@ -1,0 +1,11 @@
+{
+    "/apibackend": {
+        "target": "http://129.88.210.57:8080",
+        "secure":false,
+        "changeOrigin":true,
+        "pathRewrite": {
+            "^/apibackend": ""
+        }
+
+    }
+}

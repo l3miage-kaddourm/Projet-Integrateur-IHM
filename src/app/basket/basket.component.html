@@ -1,0 +1,42 @@
+<div class="panier">
+    <h1>Mon panier</h1>
+    
+    <div class="panier-content">
+        <div *ngIf="panier.length === 0" class="empty-basket-message">
+            Votre panier est vide.
+        </div>
+        
+        <div *ngIf="panier.length > 0" class="panier-items">
+            <div *ngFor="let item of panier" class="panier-item">
+                <img [src]="getImage(item.produit.titre)" alt="{{ item.produit.titre }}" class="panier-item-image">
+                <div class="panier-item-details">
+                    <h2>{{ item.produit.titre }}</h2>
+                    <p class="panier-item-description">{{ item.produit.description }}</p>
+                    <p class="panier-item-price">Prix: {{ item.produit.prix }}€</p>
+                    <div class="quantity-control">
+                        <button (click)="decrementQuantity(item.produit)">-</button>
+                        <span>{{ item.quantity }}</span>
+                        <button (click)="incrementQuantity(item.produit)">+</button>
+                    </div>
+                    <p class="panier-item-subtotal">Sous-total: {{ item.produit.prix * item.quantity }}€</p>
+                    <button class="remove-button" (click)="removeItem(item.produit)">Supprimer</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Résumé de la commande -->
+        <div class="panier-summary">
+            <h2>Récapitulatif de la commande</h2>
+            <!-- <div class="summary-item">
+                <span>Prix des produits : </span>
+                <span>{{ total }} €</span>
+            </div> -->
+            <div class="summary-total">
+                <span>Total : </span>
+                <span>{{ total }} €</span>
+            </div>
+            <!-- Désactiver le bouton Passer commande si le panier est vide -->
+            <button class="order-button" [disabled]="panier.length === 0" routerLink="/payment">Passer commande</button>
+        </div>
+    </div>
+</div>

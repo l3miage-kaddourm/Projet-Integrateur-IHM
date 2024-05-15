@@ -1,0 +1,141 @@
+/* Style global pour centrer la boîte */
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alignement en haut pour permettre le défilement */
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  overflow-y: auto; /* Permettre le défilement vertical */
+  padding: 20px; /* Ajouter du padding pour un peu d'espacement en haut */
+}
+
+/* Style de la boîte contenant les informations du produit */
+.product-container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px; /* Réduire le padding pour économiser de l'espace */
+  max-width: 250px; /* Réduire la largeur maximale */
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Style pour l'image du produit */
+.product-image {
+  width: 100%;
+  max-height: 150px; /* Réduire la hauteur maximale pour économiser de l'espace */
+  object-fit: contain; /* Assurer que l'image s'adapte à l'intérieur de la zone spécifiée sans déformation */
+  border-radius: 10px;
+  margin-bottom: 10px; /* Pour ajouter un peu d'espace entre l'image et le texte */
+}
+
+/* Style pour le titre */
+.product-title {
+  font-size: 20px; /* Réduire la taille de la police pour économiser de l'espace */
+  font-weight: bold;
+  margin: 10px 0; /* Réduire les marges pour économiser de l'espace */
+  color: #333333;
+}
+
+/* Style pour la description */
+.product-description {
+  font-size: 14px; /* Réduire la taille de la police pour économiser de l'espace */
+  color: #666666;
+  margin: 10px 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Nombre de lignes visibles par défaut */
+  -webkit-box-orient: vertical;
+  cursor: pointer;
+}
+
+.product-description.expanded {
+  -webkit-line-clamp: unset;
+}
+
+/* Style pour le prix */
+.product-price {
+  font-size: 18px; /* Réduire la taille de la police pour économiser de l'espace */
+  font-weight: bold;
+  color: #ff5722;
+  margin: 10px 0;
+}
+
+/* Style pour l'option de montage */
+.product-montage {
+  font-size: 14px; /* Même taille que la description pour une apparence cohérente */
+  color: #333333;
+  margin: 5px 0;
+}
+
+/* Style pour la note */
+.product-rating {
+  font-size: 14px; /* Réduire la taille de la police pour économiser de l'espace */
+  color: #ff9800;
+}
+
+.products-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.product-actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Contrôle de quantité */
+.quantity-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* Boutons du contrôle de quantité */
+.quantity-button {
+  padding: 5px 10px;
+  font-size: 14px; /* Réduire la taille de la police pour économiser de l'espace */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.quantity-button:hover {
+  background-color: #0056b3;
+}
+
+.quantity-control span {
+  margin: 0 10px;
+  font-size: 16px; /* Réduire la taille de la police pour économiser de l'espace */
+}
+
+/* Bouton ajouter au panier et passer commande */
+.order-button {
+  padding: 10px 20px;
+  font-size: 16px; /* Réduire la taille de la police pour économiser de l'espace */
+  background-color: #F5F5DC;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.order-button:hover {
+  background-color: black;
+  color: white;
+}

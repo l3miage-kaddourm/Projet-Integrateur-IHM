@@ -1,0 +1,166 @@
+/* Style principal du panier */
+.panier {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre principal du panier */
+.panier h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #333;
+}
+
+/* Contenu du panier */
+.panier-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Section des articles du panier */
+.panier-items {
+    flex: 3;
+}
+
+/* Article individuel du panier */
+.panier-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Image de l'article du panier */
+.panier-item-image {
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+/* Détails de l'article du panier */
+.panier-item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Titre de l'article du panier */
+.panier-item-details h2 {
+    margin: 0 0 10px 0;
+    font-size: 22px;
+    color: #333;
+}
+
+/* Description de l'article du panier */
+.panier-item-description {
+    font-size: 16px;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* Prix et sous-total de l'article du panier */
+.panier-item-price,
+.panier-item-subtotal {
+    margin: 5px 0;
+    font-size: 18px;
+    color: #666;
+}
+
+/* Contrôle de quantité */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Boutons du contrôle de quantité */
+.quantity-control button {
+    padding: 5px 10px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.quantity-control button:hover {
+    background-color: #0056b3;
+}
+
+/* Résumé de la commande */
+.panier-summary {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 300px; /* Ajouter cette ligne pour définir une largeur minimale */
+}
+
+/* Items de résumé */
+.summary-item,
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Bouton passer commande */
+.order-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #F5F5DC;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.order-button:hover {
+    background-color: black;
+    color: white;
+}
+
+/* Bouton supprimer */
+.remove-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remove-button:hover {
+    background-color: #c82333;
+}
+
+/* Style du texte "Votre panier est vide" */
+.empty-basket-message {
+    flex: 1; /* Prendre tout l'espace disponible */
+    display: flex; /* Utiliser Flexbox */
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    font-size: 18px;
+    color: #666;
+    margin-top: 20px; 
+}

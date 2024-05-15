@@ -1,0 +1,24 @@
+<!-- produit.component.html -->
+<div class="products-list">
+  <div *ngFor="let produit of filteredProduits" class="product-container">
+    <h1 class="product-title">{{ produit.titre }}</h1>
+    <img [src]="getImage(produit.titre)" class="product-image" alt="{{ produit.titre }}">
+    <p class="product-description">
+      {{ produit.description }}
+    </p>
+    <p class="product-price">Prix: {{ produit.prix }}€</p>
+    <p class="product-montage">Option montage: {{ produit.optionMontage ? 'Oui' : 'Non' }}</p>
+    <div class="product-actions">
+      <div *ngIf="!isInCart(produit); else quantityControl">
+        <button class="order-button" (click)="ajouterAuPanier(produit)">Ajouter au panier</button>
+      </div>
+      <ng-template #quantityControl>
+        <div class="quantity-control">
+          <button class="quantity-button" (click)="decrementQuantity(produit)">-</button>
+          <span>{{ getQuantity(produit) }}</span>
+          <button class="quantity-button" (click)="incrementQuantity(produit)">+</button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

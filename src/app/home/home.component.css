@@ -1,0 +1,36 @@
+.container {
+    position: relative;
+    width: 100%;
+    overflow-x: hidden; 
+  }
+
+.image-wrapper {
+    display: flex;
+    justify-content: center;
+    border-radius: 5px; 
+}
+
+.texte_1 {
+    position: absolute;
+    top: 1.5%;          /* En haut de la fenêtre */
+    left: 0;        /* À droite de la fenêtre */
+    color: #F5F5DC;  
+    font-size: 40px; 
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;   /* Ajoute un peu d'espace autour du texte */
+    max-width: 100%; /* S'assure que le texte ne déborde pas de l'écran */
+}
+
+.texte_2 {
+    position: absolute;
+    top: 1.5%;          /* En haut de la fenêtre */
+    right: 0;        /* À droite de la fenêtre */
+    color: #5F4D38;  
+    font-size: 40px; 
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;   /* Ajoute un peu d'espace autour du texte */
+    max-width: 100%; /* S'assure que le texte ne déborde pas de l'écran */
+}
+  
