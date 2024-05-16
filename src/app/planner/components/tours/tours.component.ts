@@ -6,6 +6,9 @@ import { forkJoin } from 'rxjs/internal/observable/forkJoin';
 import { map, from, Observable } from 'rxjs';
 import { RoService } from '../../../services/ro.service';
 import { DataToSend } from '../../models/DataToSend';
+import { DeliveryPerson } from '../../models/delivery-person.model';
+
+
 
 @Component({
 	selector: 'app-tours',
@@ -21,7 +24,7 @@ export class ToursComponent {
 	serverResponse: any;
 	isOpen = false
 
-	allDeliveryPersonnel = ['Alice', 'Bob', 'Charlie', 'Dave'];
+	allDeliveryPersonnel: string[] = ['Alice', 'Bob'];
 	availableDeliveryPersonnel = [...this.allDeliveryPersonnel];
 
 	showPersonnelSelection: { [tourId: number]: boolean } = {};
@@ -31,6 +34,18 @@ export class ToursComponent {
 		private geoApiService: GeoapiService,
 		private roService: RoService) { }
 
+
+	loadDeliveryPersons() {
+		this.dataService.getDeliveryPersons().subscribe({
+			next: (persons: DeliveryPerson[]) => {
+				this.allDeliveryPersonnel = persons.map(person => `${person.prenom} ${person.nom}`);
+				this.updateAvailableDeliveryPersonnel();
+			},
+			error: (error) => {
+				console.error('Failed to load delivery persons:', error);
+			}
+		});
+	}
 
 	tours = [
 		{
@@ -70,6 +85,7 @@ export class ToursComponent {
 
 	ngOnInit() {
 		this.updateAvailableDeliveryPersonnel();
+		this.loadDeliveryPersons();
 	}
 
 	/* ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*== */
