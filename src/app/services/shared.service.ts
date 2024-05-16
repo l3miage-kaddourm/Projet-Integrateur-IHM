@@ -6,10 +6,11 @@ import { SimpleOrders } from '../planner/models/order.model';
 	providedIn: 'root'
 })
 export class SharedService {
-	private droppedOrdersSource = new BehaviorSubject<SimpleOrders[]>([]);
-	currentDroppedOrders = this.droppedOrdersSource.asObservable();
+	private ordersSource = new BehaviorSubject<SimpleOrders[]>([]);
+	currentOrders = this.ordersSource.asObservable();
 
-	updateDroppedOrders(orders: SimpleOrders[]) {
-		this.droppedOrdersSource.next(orders);
+	updateOrders(orders: SimpleOrders[]): void {
+		this.ordersSource.next(orders);
 	}
 }
+

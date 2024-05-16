@@ -145,9 +145,7 @@ export class ToursComponent {
 	/* ==*==*==*==*==*==*==*==* End Handle CheckBox List ==*==*==*==*==*==*==*==*==*==*== */
 
 	sendDistanceMatrix(distanceMatrix: number[][]) {
-		console.log("_____HERE____");
 		console.log(distanceMatrix);
-		return;
 		const payload = {
 			matrix: distanceMatrix,
 			k: 3,

@@ -61,8 +61,8 @@ export class CreateTourComponent implements OnInit {
 	}
 
 	validate(): void {
-		this.sharedService.updateDroppedOrders(this.droppedOrders);
-		console.log("Dropped orders validated:", this.droppedOrders); // Debugging line
+		this.sharedService.updateOrders(this.droppedOrders);
+		this.onValidate.emit(this.droppedOrders);
 		this.router.navigate(['/tour']);
 	}
 }

@@ -72,7 +72,7 @@ input[type="checkbox"] {
 }
 
 #close-icon {
-	content: 'close';
+	content: '-';
 	font-family: 'Material Icons';
 	display: inline-block;
 	font-feature-settings: 'liga';

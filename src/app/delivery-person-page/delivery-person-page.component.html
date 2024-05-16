@@ -1,6 +1,6 @@
 <app-planner-header></app-planner-header>
 
-<div class="container">
+<div class="container" *ngIf="employeeTour">
     <div class="tour-info">
         <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
         <!-- ==*==*==*==*==*              Tour Info            *==*==*==*==*==* -->
@@ -10,7 +10,7 @@
                 <img src="assets/icons/schedule.png" alt="" width="35px" />
                 <h5 class="tour-num">Date</h5>
             </div>
-            <span id="tour-date">14 Jan 2024</span>
+            <span id="tour-date">{{ employeeTour.date }}</span>
         </div>
 
         <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
@@ -21,7 +21,7 @@
                 <img src="assets/icons/roadmap.png" alt="" width="35px" />
                 <h5 class="tour-num">Tour</h5>
             </div>
-            <span id="tour-date">TR02-50-09</span>
+            <span id="tour-date">{{ employeeTour.tournee.reference }}</span>
         </div>
 
         <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
@@ -33,8 +33,7 @@
                 <h5>Delivery Personnel</h5>
             </div>
             <ul>
-                <li>Alice</li>
-                <li>Bob</li>
+                <li>{{ employeeTour.prenom }} {{ employeeTour.nom }}</li>
             </ul>
         </div>
 
@@ -46,7 +45,7 @@
                 <img src="assets/icons/truck.png" alt="" width="35px" />
                 <h5>Truck ID</h5>
             </div>
-            <span>T001</span>
+            <span>{{ employeeTour.tournee.camion?.immatriculation }}</span>
         </div>
 
         <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
@@ -57,7 +56,8 @@
                 <img src="assets/icons/warehouse.png" alt="" width="35px" />
                 <h5>Entrepot</h5>
             </div>
-            <span>Grenis</span>
+            <!-- <span>Grenis</span> -->
+            <span>{{ employeeTour.entrepot }}</span>
         </div>
 
         <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
@@ -68,7 +68,7 @@
                 <img src="assets/icons/status.png" alt="" width="35px" />
                 <h5>Status</h5>
             </div>
-            <span>Planned</span>
+            <span>{{ employeeTour.tournee.etat }}</span>
         </div>
     </div>
 
@@ -76,7 +76,7 @@
 
     <div class="tour-details container">
         <!-- First Table -->
-        <table>
+        <table *ngFor="let tournee of employeeTour.tournees">
             <tr>
                 <th>Delivery</th>
                 <th>Client</th>
@@ -84,8 +84,8 @@
                 <th>Command ID</th>
                 <th>Status</th>
             </tr>
-            <tr>
-                <td>1028G-A1</td>
+            <tr *ngFor="let livraison of employeeTour.tournee.livraison">
+                <td>{{ livraison.reference }}</td>
                 <td>Axel GILLES</td>
                 <td>55 Cr. Jean Jaurès 38130 Échirolles</td>
                 <td>C053</td>

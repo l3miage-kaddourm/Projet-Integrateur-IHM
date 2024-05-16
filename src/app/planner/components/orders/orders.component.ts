@@ -8,7 +8,7 @@ import { PlannerDataService } from '../../../services/planner-data.service';
 	styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-	orders: any[] | undefined;
+	orders: Order[] = [];
 	showAll: boolean = false;
 	constructor(private dataService: PlannerDataService) { }
 
@@ -16,6 +16,7 @@ export class OrdersComponent implements OnInit {
 		this.dataService.getOrders().subscribe({
 			next: (data) => {
 				this.orders = data;
+				console.log(this.orders);
 			},
 			error: (error) => {
 				console.error('There was an error!', error);

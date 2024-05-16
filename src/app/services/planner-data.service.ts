@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map, of } from 'rxjs';
-import { BoxInfo } from '../planner/models/box-info.model';
+import { BoxInfo, Tournne } from '../planner/models/box-info.model';
 import { DeliveryPerson } from '../planner/models/delivery-person.model';
 import { Order } from '../planner/models/order.model';
 
@@ -53,4 +53,8 @@ export class PlannerDataService {
 	//         error: (error) => console.error('Update failed', error)
 	//     });
 	// }
+
+	getTournneData(): Observable<Tournne[]> {
+		return this.http.get<Tournne[]>(this.apiUrl + "/employe/livreurs");
+	}
 }
