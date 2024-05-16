@@ -5,7 +5,7 @@ export interface Adresse {
 }
 
 export interface Position {
-	laltitude: number;
+	latitude: number;
 	longitude: number;
 }
 
@@ -47,9 +47,7 @@ export interface Commande {
 	tdmTheorique: number | null;
 	dateDeLivraisonEffective: string | null;
 	dureeDeLivraison: number | null;
-	livraison: Livraison;
-	client: Client;
-	lignesProduits: LignesProduits[];
+	client: string; // Email of the client
 }
 
 export interface Livraison {
@@ -63,17 +61,40 @@ export interface Livraison {
 	heureDeLivraison: string | null;
 	heureDeLivraisonEffective: string;
 	tdmEffectif: number;
-	commande: Commande[];
+	commandes: Commande[];
+}
+
+export interface Camion {
+	immatriculation: string;
+	position: Position;
 }
 
 export interface Tournee {
-	// camion: any;
 	reference: string | null;
 	etat: string | null;
 	lettre: string | null;
 	montant: number | null;
 	distanceAparcourir: number | null;
-	livraison: Livraison[];
+	camion: Camion | null;
+	employes: EmployeeTour[];
+	livraisons: Livraison[];
+}
+
+export interface Entrepot {
+	nom: string;
+	lettre: string;
+	adresse: Adresse;
+	position: Position;
+}
+
+export interface DataToSend {
+	reference: string;
+	etat: string;
+	date: string;
+	distanceAParcourir: number;
+	montant: number;
+	tournees: Tournee[];
+	entrepot: Entrepot;
 }
 
 export interface EmployeeTour {

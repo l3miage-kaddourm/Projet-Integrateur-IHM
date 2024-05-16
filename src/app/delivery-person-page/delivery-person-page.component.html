@@ -1,4 +1,4 @@
-<app-planner-header></app-planner-header>
+<!-- <app-planner-header></app-planner-header> -->
 
 <div class="container" *ngIf="employeeTour">
     <div class="tour-info">
@@ -10,7 +10,7 @@
                 <img src="assets/icons/schedule.png" alt="" width="35px" />
                 <h5 class="tour-num">Date</h5>
             </div>
-            <span id="tour-date">{{ employeeTour.date }}</span>
+            <span id="tour-date">{{ employeeTour.tournee.reference }} </span>
         </div>
 
         <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
@@ -39,30 +39,26 @@
 
         <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
         <!-- ==*==*==*==*==*             Truck Info            *==*==*==*==*==* -->
-        <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
         <div class="box">
             <div class="icon-title">
                 <img src="assets/icons/truck.png" alt="" width="35px" />
                 <h5>Truck ID</h5>
             </div>
-            <span>{{ employeeTour.tournee.camion?.immatriculation }}</span>
+            <!-- <span>{{ employeeTour.tournee.camion?.immatriculation }}</span> -->
         </div>
 
         <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
-        <!-- ==*==*==*==*==*             Entrepot Info            *==*==*==*==*==* -->
-        <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
+        <!-- ==*==*==*==*==*             Entrepot Info         *==*==*==*==*==* -->
         <div class="box">
             <div class="icon-title">
                 <img src="assets/icons/warehouse.png" alt="" width="35px" />
                 <h5>Entrepot</h5>
             </div>
-            <!-- <span>Grenis</span> -->
             <span>{{ employeeTour.entrepot }}</span>
         </div>
 
         <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
-        <!-- ==*==*==*==*==*             Status Info            *==*==*==*==*==* -->
-        <!-- ==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==*==* -->
+        <!-- ==*==*==*==*==*             Status Info           *==*==*==*==*==* -->
         <div class="box">
             <div class="icon-title">
                 <img src="assets/icons/status.png" alt="" width="35px" />
@@ -76,30 +72,43 @@
 
     <div class="tour-details container">
         <!-- First Table -->
-        <table *ngFor="let tournee of employeeTour.tournees">
-            <tr>
-                <th>Delivery</th>
-                <th>Client</th>
-                <th>Address</th>
-                <th>Command ID</th>
-                <th>Status</th>
-            </tr>
-            <tr *ngFor="let livraison of employeeTour.tournee.livraison">
-                <td>{{ livraison.reference }}</td>
-                <td>Axel GILLES</td>
-                <td>55 Cr. Jean Jaurès 38130 Échirolles</td>
-                <td>C053</td>
-                <td>
-                    <select name="" id="">
-                        <optgroup>
-                            <option value="1">Pending</option>
-                            <option value="2">Planned</option>
-                            <option value="2">In Delivery</option>
-                            <option value="3">Livred</option>
-                        </optgroup>
-                    </select>
-                </td>
-            </tr>
+        <table>
+            <thead>
+                <tr>
+                    <th>Delivery</th>
+                    <th>Client</th>
+                    <th>Address</th>
+                    <th>Command ID</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let livraison of employeeTour.tournee.livraison">
+                    <td>{{ livraison.reference }}</td>
+                    <td *ngIf="livraison.commande.length > 0">
+                        {{ livraison.commande[0].client.prenom }}
+                        {{ livraison.commande[0].client.nom }}
+                    </td>
+                    <td *ngIf="livraison.commande.length > 0">
+                        {{ livraison.commande[0].client.adresse.adresse }},
+                        {{ livraison.commande[0].client.adresse.codePostal }}
+                        {{ livraison.commande[0].client.adresse.ville }}
+                    </td>
+                    <td *ngIf="livraison.commande.length > 0">
+                        {{ livraison.commande[0].reference }}
+                    </td>
+                    <td>
+                        <select name="" id="">
+                            <optgroup>
+                                <option value="1">Pending</option>
+                                <option value="2">Planned</option>
+                                <option value="2">In Delivery</option>
+                                <option value="3">Delivered</option>
+                            </optgroup>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
         </table>
 
         <!-- <button (click)="toggleShowAllOrders()">

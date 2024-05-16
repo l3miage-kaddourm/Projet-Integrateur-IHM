@@ -9,6 +9,7 @@ import { Order } from '../planner/models/order.model';
 	providedIn: 'root'
 })
 export class PlannerDataService {
+
 	private apiUrl = '/apibackend';
 
 	constructor(private http: HttpClient) { }
@@ -53,6 +54,11 @@ export class PlannerDataService {
 	//         error: (error) => console.error('Update failed', error)
 	//     });
 	// }
+
+	postDataTest(data: any): Observable<any> {
+		const url = this.apiUrl + "/journees/journeeCreate"
+		return this.http.post(url, data);
+	}
 
 	getTournneData(): Observable<Tournne[]> {
 		return this.http.get<Tournne[]>(this.apiUrl + "/employe/livreurs");

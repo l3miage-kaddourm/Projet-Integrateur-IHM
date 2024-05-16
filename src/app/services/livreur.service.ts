@@ -7,12 +7,12 @@ import { EmployeeTour } from '../planner/models/livreur';
 @Injectable({
 	providedIn: 'root'
 })
-export class EmployeeTourDataService  {
+export class EmployeeTourDataService {
 	private apiUrl = '/apibackend';
 
 	constructor(private http: HttpClient) { }
 
 	getEmployeeTourData(): Observable<EmployeeTour> {
-		return this.http.get<EmployeeTour>(this.apiUrl);
+		return this.http.get<EmployeeTour>(this.apiUrl + "/employe/livreurs");
 	}
 }

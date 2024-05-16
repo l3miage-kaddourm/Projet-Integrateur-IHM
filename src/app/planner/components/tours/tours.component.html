@@ -177,7 +177,9 @@
                 Optimize
             </button>
             <button mat-stroked-button>Validate</button>
-            <button mat-stroked-button>Confirm</button>
+            <button mat-stroked-button (click)="sendDataToBackend()">
+                Confirm
+            </button>
         </div>
     </div>
 </div>

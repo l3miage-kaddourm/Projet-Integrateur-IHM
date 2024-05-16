@@ -5,6 +5,7 @@ import { GeoapiService } from '../../../services/geoapi.service';
 import { forkJoin } from 'rxjs/internal/observable/forkJoin';
 import { map, from, Observable } from 'rxjs';
 import { RoService } from '../../../services/ro.service';
+import { DataToSend } from '../../models/DataToSend';
 
 @Component({
 	selector: 'app-tours',
@@ -289,6 +290,94 @@ export class ToursComponent {
 				observer.next(addresses);
 				observer.complete();
 			});
+		});
+	}
+
+	// ============================================== 
+
+	sendDataToBackend() {
+		const dataToSend = {
+			"reference": "JOURNEE_001",
+			"etat": "enCours",
+			"date": "2022-12-01",
+			"distanceAParcourir": 0.0,
+			"montant": 200.0,
+			"tournees": [
+				{
+					"reference": "TOURNEE_001",
+					"etat": "planifiee",
+					"lettre": "A",
+					"montant": 50.0,
+					"distanceAparcourir": 25.0,
+					"camion": {
+						"immatriculation": "AB-123-CD",
+						"position": {
+							"latitude": 45.0,
+							"longitude": 5.0
+						}
+					},
+					"employes": [
+						{
+							"trigramme": "AAA",
+							"prenom": "anais",
+							"nom": "ANNA",
+							"telephone": "0657813525",
+							"emploi": "livreur",
+							"email": null,
+						}
+					],
+					"livraisons": [
+						{
+							"reference": "LIVRAISON_001",
+							"etat": "planifiee",
+							"montant": 200.0,
+							"distanceAparcourir": 25.0,
+							"tdpAlAller": 3,
+							"tdpTheorique": 4,
+							"tdmTheorique": 6,
+							"heureDeLivraisonEffective": "10:00:00",
+							"tdmEffectif": 7,
+							"commandes": [
+								{
+									"reference": "c258",
+									"etat": "livrée",
+									"dateDeCreation": "2024-04-05T03:00:00",
+									"note": null,
+									"commentaire": null,
+									"montant": 0,
+									"tddTheorique": null,
+									"tdmTheorique": null,
+									"dateDeLivraisonEffective": null,
+									"dureeDeLivraison": null,
+									"client": "abois@lp.net"
+								}
+							]
+						}
+					]
+				}
+			],
+			"entrepot": {
+				"nom": "Valis",
+				"lettre": "V",
+				"adresse": {
+					"adresse": "131 Avenue des Auréats",
+					"ville": "Valence",
+					"codePostal": "26000"
+				},
+				"position": {
+					"latitude": 44.8941946,
+					"longitude": 4.8840194
+				}
+			}
+		}
+
+		this.dataService.postDataTest(dataToSend).subscribe({
+			next: (result: any) => {
+				console.log('Data sent to server successfully:', result);
+			},
+			error: (error: any) => {
+				console.error('Failed to send data:', error);
+			}
 		});
 	}
 
